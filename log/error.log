@@ -1,0 +1,193 @@
+[02/Nov/2011:11:43:50 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:11:44:00 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:11:46:44 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:11:47:05 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:11:47:35 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:11:47:51 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:11:48:00 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:11:48:10 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:11:48:34 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:11:48:48 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:11:49:52 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:11:51:04 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:11:52:13 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:11:52:13 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:11:52:14 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:11:52:35 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:11:52:35 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:11:52:36 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:11:52:50 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:11:52:50 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:11:52:51 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:11:53:03 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:11:53:03 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:11:53:04 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:11:53:29 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:11:53:29 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:11:53:29 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:11:53:48 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:11:53:48 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:11:53:49 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:11:53:57 -0600] During processing of request from 127.0.0.1:52430
+request:
+"Request <\n    server-name: localhost\n    remote: 127.0.0.1:52430\n    local: 127.0.0.1:3000\n    Headers:\n      ========================================\n          User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.106 Safari/535.2\n Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.3\n Accept-Language: en-US,en;q=0.8\n Cookie: _gig_mig=1; userId=; signature=; timestamp=; screenname=; state=ut; city=provo; lineupName=comcast; lineupId=UT43414; visited=true; glt_2_f_Q172DO1_cSfrs10A14UY0qPKu2kMuRIupAjOoUbwpAq0g9gqbd8YF9tNUmVR5T=LT1_ulCcbzCLRNJOfSUi9vzbkw%3D%3D%7CUUID%3D64g_100001102534350; _gig_llp=facebook; _gig_llu=Sean; mp_super_properties=%7B%22all%22%3A%20%7B%22%24initial_referrer%22%3A%20%22http%3A//localhost%3A3001/pulsetrack/%22%2C%22%24initial_referring_domain%22%3A%20%22localhost%3A3001%22%7D%2C%22events%22%3A%20%7B%7D%2C%22funnels%22%3A%20%7B%7D%7D; connect.sid=oABsGUSS7BhJ4LU8z2w95ZvL.mAWEmVVraGtBRb9a9LUr0J092rOcijdL3S%2BNYgPxYNg\n Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\n Host: localhost:3000\n Connection: keep-alive\n Accept-Encoding: gzip,deflate,sdch\n      ========================================\n    content-length: Nothing\n    method: GET\n    version: (1,1)\n    cookies:\n      ========================================\n      Cookie {cookieName = \"_gig_mig\", cookieValue = \"1\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"userId\", cookieValue = \"\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"signature\", cookieValue = \"\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"timestamp\", cookieValue = \"\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"screenname\", cookieValue = \"\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"state\", cookieValue = \"ut\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"city\", cookieValue = \"provo\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"lineupName\", cookieValue = \"comcast\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"lineupId\", cookieValue = \"UT43414\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"visited\", cookieValue = \"true\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"glt_2_f_Q172DO1_cSfrs10A14UY0qPKu2kMuRIupAjOoUbwpAq0g9gqbd8YF9tNUmVR5T\", cookieValue = \"LT1_ulCcbzCLRNJOfSUi9vzbkw%3D%3D%7CUUID%3D64g_100001102534350\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"_gig_llp\", cookieValue = \"facebook\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"_gig_llu\", cookieValue = \"Sean\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"mp_super_properties\", cookieValue = \"%7B%22all%22%3A%20%7B%22%24initial_referrer%22%3A%20%22http%3A//localhost%3A3001/pulsetrack/%22%2C%22%24initial_referring_domain%22%3A%20%22localhost%3A3001%22%7D%2C%22events%22%3A%20%7B%7D%2C%22funnels%22%3A%20%7B%7D%7D\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"connect.sid\", cookieValue = \"oABsGUSS7BhJ4LU8z2w95ZvL.mAWEmVVraGtBRb9a9LUr0J092rOcijdL3S%2BNYgPxYNg\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n      ========================================\n    pathinfo: log/access.log\n    contextpath: /\n    snapletpath: \n    URI: /log/access.log\n    params:\n      ========================================\n      \n      ========================================\n>"
+A web handler threw an exception. Details:
+./log/access.log: openFile: resource busy (file is locked)
+[02/Nov/2011:11:54:01 -0600] During processing of request from 127.0.0.1:52430
+request:
+"Request <\n    server-name: localhost\n    remote: 127.0.0.1:52430\n    local: 127.0.0.1:3000\n    Headers:\n      ========================================\n          User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.106 Safari/535.2\n Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.3\n Accept-Language: en-US,en;q=0.8\n Cookie: _gig_mig=1; userId=; signature=; timestamp=; screenname=; state=ut; city=provo; lineupName=comcast; lineupId=UT43414; visited=true; glt_2_f_Q172DO1_cSfrs10A14UY0qPKu2kMuRIupAjOoUbwpAq0g9gqbd8YF9tNUmVR5T=LT1_ulCcbzCLRNJOfSUi9vzbkw%3D%3D%7CUUID%3D64g_100001102534350; _gig_llp=facebook; _gig_llu=Sean; mp_super_properties=%7B%22all%22%3A%20%7B%22%24initial_referrer%22%3A%20%22http%3A//localhost%3A3001/pulsetrack/%22%2C%22%24initial_referring_domain%22%3A%20%22localhost%3A3001%22%7D%2C%22events%22%3A%20%7B%7D%2C%22funnels%22%3A%20%7B%7D%7D; connect.sid=oABsGUSS7BhJ4LU8z2w95ZvL.mAWEmVVraGtBRb9a9LUr0J092rOcijdL3S%2BNYgPxYNg\n Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\n Host: localhost:3000\n Cache-Control: max-age=0\n Connection: keep-alive\n Accept-Encoding: gzip,deflate,sdch\n      ========================================\n    content-length: Nothing\n    method: GET\n    version: (1,1)\n    cookies:\n      ========================================\n      Cookie {cookieName = \"_gig_mig\", cookieValue = \"1\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"userId\", cookieValue = \"\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"signature\", cookieValue = \"\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"timestamp\", cookieValue = \"\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"screenname\", cookieValue = \"\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"state\", cookieValue = \"ut\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"city\", cookieValue = \"provo\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"lineupName\", cookieValue = \"comcast\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"lineupId\", cookieValue = \"UT43414\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"visited\", cookieValue = \"true\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"glt_2_f_Q172DO1_cSfrs10A14UY0qPKu2kMuRIupAjOoUbwpAq0g9gqbd8YF9tNUmVR5T\", cookieValue = \"LT1_ulCcbzCLRNJOfSUi9vzbkw%3D%3D%7CUUID%3D64g_100001102534350\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"_gig_llp\", cookieValue = \"facebook\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"_gig_llu\", cookieValue = \"Sean\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"mp_super_properties\", cookieValue = \"%7B%22all%22%3A%20%7B%22%24initial_referrer%22%3A%20%22http%3A//localhost%3A3001/pulsetrack/%22%2C%22%24initial_referring_domain%22%3A%20%22localhost%3A3001%22%7D%2C%22events%22%3A%20%7B%7D%2C%22funnels%22%3A%20%7B%7D%7D\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"connect.sid\", cookieValue = \"oABsGUSS7BhJ4LU8z2w95ZvL.mAWEmVVraGtBRb9a9LUr0J092rOcijdL3S%2BNYgPxYNg\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n      ========================================\n    pathinfo: log/access.log\n    contextpath: /\n    snapletpath: \n    URI: /log/access.log\n    params:\n      ========================================\n      \n      ========================================\n>"
+A web handler threw an exception. Details:
+./log/access.log: openFile: resource busy (file is locked)
+[02/Nov/2011:11:54:03 -0600] During processing of request from 127.0.0.1:52430
+request:
+"Request <\n    server-name: localhost\n    remote: 127.0.0.1:52430\n    local: 127.0.0.1:3000\n    Headers:\n      ========================================\n          User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.106 Safari/535.2\n Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.3\n Accept-Language: en-US,en;q=0.8\n Cookie: _gig_mig=1; userId=; signature=; timestamp=; screenname=; state=ut; city=provo; lineupName=comcast; lineupId=UT43414; visited=true; glt_2_f_Q172DO1_cSfrs10A14UY0qPKu2kMuRIupAjOoUbwpAq0g9gqbd8YF9tNUmVR5T=LT1_ulCcbzCLRNJOfSUi9vzbkw%3D%3D%7CUUID%3D64g_100001102534350; _gig_llp=facebook; _gig_llu=Sean; mp_super_properties=%7B%22all%22%3A%20%7B%22%24initial_referrer%22%3A%20%22http%3A//localhost%3A3001/pulsetrack/%22%2C%22%24initial_referring_domain%22%3A%20%22localhost%3A3001%22%7D%2C%22events%22%3A%20%7B%7D%2C%22funnels%22%3A%20%7B%7D%7D; connect.sid=oABsGUSS7BhJ4LU8z2w95ZvL.mAWEmVVraGtBRb9a9LUr0J092rOcijdL3S%2BNYgPxYNg\n Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\n Host: localhost:3000\n Connection: keep-alive\n Accept-Encoding: gzip,deflate,sdch\n      ========================================\n    content-length: Nothing\n    method: GET\n    version: (1,1)\n    cookies:\n      ========================================\n      Cookie {cookieName = \"_gig_mig\", cookieValue = \"1\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"userId\", cookieValue = \"\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"signature\", cookieValue = \"\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"timestamp\", cookieValue = \"\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"screenname\", cookieValue = \"\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"state\", cookieValue = \"ut\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"city\", cookieValue = \"provo\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"lineupName\", cookieValue = \"comcast\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"lineupId\", cookieValue = \"UT43414\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"visited\", cookieValue = \"true\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"glt_2_f_Q172DO1_cSfrs10A14UY0qPKu2kMuRIupAjOoUbwpAq0g9gqbd8YF9tNUmVR5T\", cookieValue = \"LT1_ulCcbzCLRNJOfSUi9vzbkw%3D%3D%7CUUID%3D64g_100001102534350\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"_gig_llp\", cookieValue = \"facebook\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"_gig_llu\", cookieValue = \"Sean\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"mp_super_properties\", cookieValue = \"%7B%22all%22%3A%20%7B%22%24initial_referrer%22%3A%20%22http%3A//localhost%3A3001/pulsetrack/%22%2C%22%24initial_referring_domain%22%3A%20%22localhost%3A3001%22%7D%2C%22events%22%3A%20%7B%7D%2C%22funnels%22%3A%20%7B%7D%7D\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"connect.sid\", cookieValue = \"oABsGUSS7BhJ4LU8z2w95ZvL.mAWEmVVraGtBRb9a9LUr0J092rOcijdL3S%2BNYgPxYNg\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n      ========================================\n    pathinfo: log/error.log\n    contextpath: /\n    snapletpath: \n    URI: /log/error.log\n    params:\n      ========================================\n      \n      ========================================\n>"
+A web handler threw an exception. Details:
+./log/error.log: openFile: resource busy (file is locked)
+[02/Nov/2011:11:55:20 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:11:55:20 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:11:55:21 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:11:55:31 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:11:55:31 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:11:55:32 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:11:56:09 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:11:56:09 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:11:56:20 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:13:10:36 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:13:10:36 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:13:10:54 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:13:11:21 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:13:11:21 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:13:12:06 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:13:12:34 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:13:12:34 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:13:14:09 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:13:14:25 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:13:14:25 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:13:14:26 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:13:14:54 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:13:14:54 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:13:14:55 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:13:15:35 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:13:15:35 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:13:15:55 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:13:16:34 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:13:16:34 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:13:18:07 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:13:19:53 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:13:20:01 -0600] During processing of request from 127.0.0.1:52570
+request:
+"Request <\n    server-name: localhost\n    remote: 127.0.0.1:52570\n    local: 127.0.0.1:3000\n    Headers:\n      ========================================\n          User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.106 Safari/535.2\n Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.3\n Accept-Language: en-US,en;q=0.8\n Cookie: _gig_mig=1; userId=; signature=; timestamp=; screenname=; state=ut; city=provo; lineupName=comcast; lineupId=UT43414; visited=true; glt_2_f_Q172DO1_cSfrs10A14UY0qPKu2kMuRIupAjOoUbwpAq0g9gqbd8YF9tNUmVR5T=LT1_ulCcbzCLRNJOfSUi9vzbkw%3D%3D%7CUUID%3D64g_100001102534350; _gig_llp=facebook; _gig_llu=Sean; mp_super_properties=%7B%22all%22%3A%20%7B%22%24initial_referrer%22%3A%20%22http%3A//localhost%3A3001/pulsetrack/%22%2C%22%24initial_referring_domain%22%3A%20%22localhost%3A3001%22%7D%2C%22events%22%3A%20%7B%7D%2C%22funnels%22%3A%20%7B%7D%7D; connect.sid=oABsGUSS7BhJ4LU8z2w95ZvL.mAWEmVVraGtBRb9a9LUr0J092rOcijdL3S%2BNYgPxYNg\n Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\n Host: localhost:3000\n Connection: keep-alive\n Accept-Encoding: gzip,deflate,sdch\n      ========================================\n    content-length: Nothing\n    method: GET\n    version: (1,1)\n    cookies:\n      ========================================\n      Cookie {cookieName = \"_gig_mig\", cookieValue = \"1\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"userId\", cookieValue = \"\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"signature\", cookieValue = \"\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"timestamp\", cookieValue = \"\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"screenname\", cookieValue = \"\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"state\", cookieValue = \"ut\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"city\", cookieValue = \"provo\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"lineupName\", cookieValue = \"comcast\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"lineupId\", cookieValue = \"UT43414\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"visited\", cookieValue = \"true\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"glt_2_f_Q172DO1_cSfrs10A14UY0qPKu2kMuRIupAjOoUbwpAq0g9gqbd8YF9tNUmVR5T\", cookieValue = \"LT1_ulCcbzCLRNJOfSUi9vzbkw%3D%3D%7CUUID%3D64g_100001102534350\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"_gig_llp\", cookieValue = \"facebook\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"_gig_llu\", cookieValue = \"Sean\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"mp_super_properties\", cookieValue = \"%7B%22all%22%3A%20%7B%22%24initial_referrer%22%3A%20%22http%3A//localhost%3A3001/pulsetrack/%22%2C%22%24initial_referring_domain%22%3A%20%22localhost%3A3001%22%7D%2C%22events%22%3A%20%7B%7D%2C%22funnels%22%3A%20%7B%7D%7D\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n Cookie {cookieName = \"connect.sid\", cookieValue = \"oABsGUSS7BhJ4LU8z2w95ZvL.mAWEmVVraGtBRb9a9LUr0J092rOcijdL3S%2BNYgPxYNg\", cookieExpires = Nothing, cookieDomain = Nothing, cookiePath = Nothing, cookieSecure = False, cookieHttpOnly = False}\n      ========================================\n    pathinfo: hello/sean\n    contextpath: /\n    snapletpath: \n    URI: /hello/sean\n    params:\n      ========================================\n      \n      ========================================\n>"
+A web handler threw an exception. Details:
+/Users/seanhess/itv/tvtagdemos/api.hs:46:17-47: Irrefutable pattern failed for pattern Data.Maybe.Just value
+
+[02/Nov/2011:13:21:17 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:13:21:18 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:13:21:18 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:13:21:53 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:13:21:53 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:13:21:53 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:13:23:09 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:13:23:14 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:13:23:14 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:13:23:15 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:13:24:39 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:13:24:39 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:13:24:40 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:13:25:49 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:13:25:49 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:13:34:00 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:13:34:11 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:13:34:11 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:13:34:12 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:13:34:29 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:13:34:29 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:13:34:29 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:13:34:48 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:13:34:48 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:13:34:48 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:13:34:57 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:13:34:57 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:13:34:58 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:13:35:07 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:13:35:07 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:13:35:19 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:13:35:38 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:13:35:38 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:13:35:38 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:13:35:49 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:13:35:49 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:13:35:50 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:13:35:54 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:13:35:54 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:13:36:14 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:13:36:23 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:13:36:23 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:13:36:24 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:13:37:29 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:13:37:29 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:13:37:30 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:13:38:52 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:13:38:52 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:13:38:53 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:13:38:54 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:13:38:54 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:13:38:56 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:13:39:17 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:13:39:17 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:13:39:18 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:13:39:34 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:13:39:34 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:13:39:35 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:15:26:31 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:15:26:31 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:15:53:30 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:15:56:13 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:15:56:13 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:15:56:13 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:15:56:57 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:15:56:58 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:15:56:58 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:15:57:20 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:15:57:20 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:15:57:20 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:16:05:48 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:16:06:21 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:16:07:24 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:16:07:31 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:16:07:51 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:16:08:07 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:16:11:08 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:16:19:32 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:16:19:56 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:16:19:56 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:16:19:56 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:16:20:39 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:16:20:39 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:16:20:40 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:16:21:42 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:16:21:42 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:16:22:48 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:16:30:18 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:16:30:18 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:16:31:09 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:16:36:14 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:16:36:18 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:16:36:18 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:16:36:19 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:16:36:20 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:16:36:20 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:16:36:37 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:16:36:38 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:16:36:38 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:16:36:52 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:16:37:35 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:16:37:48 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:16:38:16 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:16:43:20 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:16:44:39 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:16:44:40 -0600] Server.httpServe: SHUTDOWN
+[02/Nov/2011:16:44:40 -0600] Server.httpServe: BACKEND STOPPED
+[02/Nov/2011:16:45:26 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:16:45:39 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:16:45:51 -0600] Server.httpServe: START (EventLoopSimple)
+[02/Nov/2011:16:46:04 -0600] Server.httpServe: START (EventLoopSimple)

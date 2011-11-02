@@ -1,0 +1,35 @@
+[√] Put some mock tags in there of different types
+    [ ] Create a tag object
+    [ ] Save some in the database
+    [ ] Be able to make a query
+[ ] process to index / map-reduce / whatever / based on the keywords 
+[ ] Create an API, and HTML interface, that return the tags for a given search term 
+[ ] Figure out how to add different weights to different services that we know are better?
+
+[ ] Mock Tags in indexed form (map reduce + id?) (yes, eventually, but for now, just the docs)
+[√] Function that returns docs matching the search term
+[ ] API returning docs that match the search term in JSON
+[ ] API returning docs that match the search term in HTML
+[ ] Ingest Aol, CBS, and Wikipedia
+
+
+THE REAL STEPS
+[√] Get some mock tags
+[√] Method 1: Return anything matching the search term - in any order
+[ ] API: Make a web route returning a JSON representation
+    [√] Get web running
+    [√] Get json output with dummy data
+    [ ] Get json running with bson data
+    [ ] Get real data / route in there
+        !! I can do it if I map the BSON onto algebraic data types
+[ ] API: Make a web route returning HTML representation
+[ ] API 2: Manually add a search term and a score to each document
+    [ ] Think about which results are strongest for a given search term
+    [ ] Make it return those with the strongest first
+    [ ] Make it work for "Lady" and "Lady Gaga"
+[ ] API 3: Source weighting. Figure out how to favor Aol over Wikipedia, in spite of its score
+    [ ] whichever one doesn't come up first, make that one come up first. 
+[ ] API 4: Breifs: Add a "Brief" in there, and give it maximum score
+
+[ ] API 5: Figure out how to extract search terms and give them a score
+    [ ] Have them show up for different key word searches

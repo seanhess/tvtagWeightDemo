@@ -1,0 +1,504 @@
+LADY GAGA
+
+-- FROM WIKIPEDIA --
+Lady Gaga - http://en.wikipedia.org/wiki/Lady_gaga
+Lady Gaga Presents the Monster Ball Tour - http://en.wikipedia.org/wiki/Lady_Gaga_Presents_the_Monster_Ball_Tour:_At_Madison_Square_Garden
+Lady Gaga discography - http://en.wikipedia.org/wiki/Lady_Gaga_discography
+Lady Gaga Queen of Pop - http://en.wikipedia.org/wiki/Lady_Gaga:_Queen_of_Pop
+Lady Gaga World Tour 2010 - http://en.wikipedia.org/wiki/Lady_Gaga_World_Tour_2010
+Lady Gaga the fame monster - http://en.wikipedia.org/wiki/Lady_Gaga_the_fame_monster
+Lady Gaga Telephone - http://en.wikipedia.org/wiki/Lady_Gaga_Telephone
+Lady Gaga x Terry Richardson - http://en.wikipedia.org/wiki/Lady_Gaga_x_Terry_Richardson
+Lady Gaga Revenge - http://en.wikipedia.org/wiki/Lady_Gaga_Revenge#Lady_Gaga_Revenge
+Lady gaga You and I - http://en.wikipedia.org/wiki/Lady_gaga_you_and_i
+
+-- FROM THE INSIDER --
+
+<item>
+<link>
+http://www.theinsider.com/music/45833_Bad_Romance_Named_All_Time_100_Songs/index.html
+</link>
+<title>
+<![CDATA[ 'Bad Romance' Enters All-Time 100 ]]>
+</title>
+<description>
+<![CDATA[
+<p>Lady Gaga's <em>Bad Romance</em> won a Grammy for Best Female Pop Vocal Performance, seven MTV VMA's (including Video of the Year) and created an iconic dance move you can't help but replicate when listening to. Now, more than two years after its release, the track is still earning accolades.</p><p>Yesterday, <em>Bad Romance</em> was added to the All-Time 100 Songs -- a catalog of music that <a target="_blank" href="http://entertainment.time.com/2011/10/28/listen-to-the-all-time-100-songs-in-180-seconds/">Time Magazine</a> considers irreplaceable. Gaga joins Queen (<em>Bohemian Rhapsod</em>y), Michael Jackson (<em>Billie Jean</em>), Dolly Parton (<em>Jolene</em>), Joni Mitchell (<em>A Case of You</em>), Nirvana (<em>Smells Like Teen Spirit</em>) and countless other icons on the list.</p><p>Check out all 100 songs below!</p><p><a href='http://www.theinsider.com/music/45833_Bad_Romance_Named_All_Time_100_Songs/index.html' target='_blank'>Continue reading...</a></p>
+]]>
+</description>
+<description-plain>
+<![CDATA[
+Lady Gaga's Bad Romance won a Grammy for Best Female Pop Vocal Performance, seven MTV VMA's (including Video of the Year) and created an iconic dance move you can't help but replicate when listening to. Now, more than two years after its release, the track is still earning accolades. Yesterday, Bad Romance was added to the All-Time 100 Songs -- a catalog of music that Time Magazine considers irreplaceable. Gaga joins Queen (Bohemian Rhapsody), Michael Jackson (Billie Jean), Dolly Parton (Jolene), Joni Mitchell (A Case of You), Nirvana (Smells Like Teen Spirit) and countless other icons on the list. Check out all 100 songs below!
+]]>
+</description-plain>
+<pubDate>Wed, 02 Nov 2011 05:53:00 -0700</pubDate>
+<guid>
+http://www.theinsider.com/music/45833_Bad_Romance_Named_All_Time_100_Songs/index.html
+</guid>
+made it
+<media:content url="http://www.theinsider.com/media/photo/2011/11/94676/romance_640.jpg" width="640" height="360" type="image/jpeg">
+<media:thumbnail url="http://www.theinsider.com/media/photo/2011/11/94674/romance_112.jpg" width="112" height="112" type="image/jpeg"/>
+<media:credit/>
+</media:content>
+</item>
+
+
+-- FROM AOLTV --
+
+This XML file does not appear to have any style information associated with it. The document tree is shown below.
+<rss xmlns:g="http://base.google.com/ns/1.0" xmlns:c="http://base.google.com/cns/1.0" version="2.0">
+<channel>
+<title>Lady Gaga</title>
+<link>http://insidetv.aol.com/tag/lady+gaga</link>
+<description>The latest news for Lady Gaga on AOL Television</description>
+<image>
+<url>
+http://o.aolcdn.com/ent/television/tv-main/AolTelevision.gif
+</url>
+<title>Lady Gaga</title>
+<link>http://insidetv.aol.com/tag/lady+gaga</link>
+</image>
+<language>en-us</language>
+<copyright>Copyright 2011 All Rights Reserved. AOL LLC.</copyright>
+<generator>Blogsmith</generator>
+<item>
+<title>
+Jerry Springer Dresses Up as Lady Gaga for Halloween (VIDEO)
+</title>
+<link>
+http://www.aoltv.com/2011/10/31/jerry-springer-lady-gaga-halloween-video/
+</link>
+<description>
+<![CDATA[
+A mystery trick or treater rang 'Rachael Ray''s (weekdays, syndicated on ABC) doorbell Monday, and a very tall Lady Gaga in drag was at the door. Rachael, wearing a Little Red Riding Hood costume, lifted the veil to reveal that it was Jerry Springer. The look was so bizarre that the audience didn't even realize it was Springer until Rachael and Buddy shouted his name. Still in costume, Jerry sat down and talked about being on the air for 21 years. "Two names: Jerry and Oprah. That's the list ...
+]]>
+</description>
+<pubDate>Mon, 31 Oct 2011 19:30:00 EST</pubDate>
+<source url="http://www.aoltv.com">AOL TV</source>
+<guid isPermaLink="true">
+http://www.aoltv.com/2011/10/31/jerry-springer-lady-gaga-halloween-video/
+</guid>
+<g:image_link>
+http://www.blogcdn.com/www.aoltv.com/media/2011/10/springer_thumbnail.jpg
+</g:image_link>
+<c:author url="http://www.aoltv.com/bloggers/stephanie-opella">Stephanie Opella</c:author>
+</item>
+<item>
+<title>
+Lady Gaga Talks About Madonna as Inspiration on 'Gaga by Gaultier' (VIDEO)
+</title>
+<link>
+http://www.aoltv.com/2011/09/13/lady-gaga-madonna-inspiration-gaga-by-gaultier-video/
+</link>
+<description>
+<![CDATA[
+In a strange bit of programming The CW devoted over an hour to 'Gaga by Gaultier' (Mon., 8PM ET on The CW), wherein Lady Gaga and French designer Jean Paul Gaultier interviewed one another. The two covered nearly every topic imaginable in the 75-minute running time, including Gaga's love of Madonna. While reports had surfaced recently that Madonna questioned whether Gaga's "obsessions have to do with" Madonna were "rooted in something deep and meaningful, or superficial." Gaga certainly ...
+]]>
+</description>
+<pubDate>Tue, 13 Sep 2011 05:57:00 EST</pubDate>
+<source url="http://www.aoltv.com">AOL TV</source>
+<guid isPermaLink="true">
+http://www.aoltv.com/2011/09/13/lady-gaga-madonna-inspiration-gaga-by-gaultier-video/
+</guid>
+<g:image_link>
+http://www.blogcdn.com/www.aoltv.com/media/2011/09/gaga.by.gaultier.110912_thumbnail.jpg
+</g:image_link>
+<c:author url="http://www.aoltv.com/bloggers/jason-hughes">Jason Hughes</c:author>
+</item>
+<item>
+<title>
+Deena Cortese Says VMAs Were the Best Night of Her Life on 'Good Day LA' (VIDEO)
+</title>
+<link>
+http://www.aoltv.com/2011/08/29/deena-cortese-vmas-best-night-of-her-life-video/
+</link>
+<description>
+<![CDATA[
+Deena Cortese said Sunday night's MTV Video Music Awards ceremony was "the best night of my life" on 'Good Day LA' (weekdays, 9AM PT on Fox). She got to meet a lot of celebrities, and found they were fans of hers, and 'Jersey Shore.' Deena was most thrilled with meeting Lady Gaga, which almost made her cry. "Never in my life I thought that Neo, Beyonce, like, Lady Gaga, Pippa," she said, "like, they would come up and like say they watch us. Seth, like, Rogen, like, Jonah Hill's like, it was ...
+]]>
+</description>
+<pubDate>Mon, 29 Aug 2011 14:45:00 EST</pubDate>
+<source url="http://www.aoltv.com">AOL TV</source>
+<guid isPermaLink="true">
+http://www.aoltv.com/2011/08/29/deena-cortese-vmas-best-night-of-her-life-video/
+</guid>
+<g:image_link>
+http://www.blogcdn.com/www.aoltv.com/media/2011/08/gdla-1314641110_thumbnail.jpg
+</g:image_link>
+<c:author url="http://www.aoltv.com/bloggers/nick-zaino">Nick Zaino</c:author>
+</item>
+<item>
+<title>
+Lady Gaga, Britney Spears, Beyonce and Cloris Leachman Highlight the 2011 VMAs (VIDEO)
+</title>
+<link>
+http://www.aoltv.com/2011/08/29/women-win-big-vmas-highlights-list-of-winners-video/
+</link>
+<description>
+<![CDATA[
+As always, the 'MTV Video Music Awards' (Sun., 9PM ET on MTV) was a spectacle of sight and sound, filled with the hottest faces and voices in popular music. Jay-Z and Kany West lit up the stage with a duet, while Mrs. Jay-Z, Beyonce, performed and revealed that the couple was expecting. Lady Gaga presented yet another crazy costume, only this time the craziest thing about it was that she was portraying a man -- her own lover, no less. She stayed in character to present Britney Spears with the ...
+]]>
+</description>
+<pubDate>Mon, 29 Aug 2011 03:21:00 EST</pubDate>
+<source url="http://www.aoltv.com">AOL TV</source>
+<guid isPermaLink="true">
+http://www.aoltv.com/2011/08/29/women-win-big-vmas-highlights-list-of-winners-video/
+</guid>
+<g:image_link>
+http://www.blogcdn.com/www.aoltv.com/media/2011/08/2011.mtv.video.music.awards.110828.britney.spears.lady.gaga_thumbnail.jpg
+</g:image_link>
+<c:author url="http://www.aoltv.com/bloggers/jason-hughes">Jason Hughes</c:author>
+</item>
+<item>
+<title>
+Lady Gaga Lends Voice to 'The Simpsons,' Andre Braugher Heading to 'SVU' and More Casting News
+</title>
+<link>
+http://www.aoltv.com/2011/08/23/lady-gaga-the-simpsons/
+</link>
+<description>
+<![CDATA[
+Lady Gaga is going to make little monsters out of 'The Simpsons.' The pop sensation will be stopping by Springfield in 'Lisa Goes Gaga,' EW reports. After learning the fictional city is filled with low self-esteem, Gaga tries to cheer up Lisa with a song and a flash mob. In addition to some Lisa interaction, Gaga will have a variety of wardrobe changes and share a smooch with none other than Marge Simpson. "I would say this is one of the coolest things I've ever done," Gaga told EW about ...
+]]>
+</description>
+<pubDate>Tue, 23 Aug 2011 16:00:00 EST</pubDate>
+<source url="http://www.aoltv.com">AOL TV</source>
+<guid isPermaLink="true">
+http://www.aoltv.com/2011/08/23/lady-gaga-the-simpsons/
+</guid>
+<g:image_link>
+http://www.blogcdn.com/www.aoltv.com/media/2011/07/lady-gaga-ap_thumbnail.jpg
+</g:image_link>
+<c:author url="http://www.aoltv.com/bloggers/chris-harnick">Chris Harnick</c:author>
+</item>
+<item>
+<title>What to Watch: TV Picks for August 22 - 28</title>
+<link>
+http://www.aoltv.com/2011/08/22/what-to-watch-tv-picks-for-august-22-28/
+</link>
+<description>
+<![CDATA[
+Dan For Mayor - Sunday August 28, 7:30 pm ET/PT, CTV As sure a sign of the end of summer as Labour Day, it's the season finale of 'Dan For Mayor' and its partner show, 'Hiccups' (following at 8:30). It means CTV is gearing up to dedicate its airwaves once more to shows about hot doctors, hot housewives and coming soon, hot stewardesses -- in other words, American shows. Tonight, Dan signs off with a show about the struggles of vegetarians, with a great many meat puns. ...
+]]>
+</description>
+<pubDate>Mon, 22 Aug 2011 13:05:00 EST</pubDate>
+<source url="http://www.aoltv.com">AOL TV</source>
+<guid isPermaLink="true">
+http://www.aoltv.com/2011/08/22/what-to-watch-tv-picks-for-august-22-28/
+</guid>
+<g:image_link>
+http://www.blogcdn.com/www.aoltv.com/media/2011/08/dan_thumbnail.jpg
+</g:image_link>
+<c:author url="http://www.aoltv.com/bloggers/stephanie-earp">Stephanie Earp</c:author>
+</item>
+<item>
+<title>
+Winners from Across Entertainment at the '2011 Do Something! Awards' (VIDEO)
+</title>
+<link>
+http://www.aoltv.com/2011/08/19/winners-at-the-2011-do-something-awards-video/
+</link>
+<description>
+<![CDATA[
+It was a star-studded affair at the 2011 Do Something! Awards' (Thu., 9PM ET on VH1). The show spotlights and awards people for making a difference in their communities and in the world. And of course it also spotlights celebrities who take the time to reach out as well. How else are you going to lure in as many viewers as you can? With the likes of Bieber, Gaga, Colbert, Fallon, Ferrell and Wilde, of course. It was a star-studded event, and all the cool kids were there to accept awards. ...
+]]>
+</description>
+<pubDate>Fri, 19 Aug 2011 03:53:00 EST</pubDate>
+<source url="http://www.aoltv.com">AOL TV</source>
+<guid isPermaLink="true">
+http://www.aoltv.com/2011/08/19/winners-at-the-2011-do-something-awards-video/
+</guid>
+<g:image_link>
+http://www.blogcdn.com/www.aoltv.com/media/2011/08/do.something.awards.110818.jimmy.fallon.stephen.colbert_thumbnail.jpg
+</g:image_link>
+<c:author url="http://www.aoltv.com/bloggers/jason-hughes">Jason Hughes</c:author>
+</item>
+<item>
+<title>
+Top 5 TVR Clips of the Week: Jessica Alba Gets Pregnant Sex-Ed, Andy Cohen Loses It & More (VIDEO)
+</title>
+<link>
+http://www.aoltv.com/2011/07/30/top-5-tvr-clips-of-the-week-july-30-video/
+</link>
+<description>
+<![CDATA[
+We learned a lot this week. We finally saw how much jibberish the 'Real Housewives' can yell before Andy Cohen reached his breaking point. Jessica Alba learned that she can indeed have sex while pregnant. Gene Simmons learned the hard way that in order to propose to your long-time girlfriend, you must not be so exhausted that you can't form coherent sentences. Lady Gaga confirmed that a 'So You Think You Can Dance' contestant is actually talented. And Kat Von D taught us all the valuable lesson ...
+]]>
+</description>
+<pubDate>Sat, 30 Jul 2011 12:30:00 EST</pubDate>
+<source url="http://www.aoltv.com">AOL TV</source>
+<guid isPermaLink="true">
+http://www.aoltv.com/2011/07/30/top-5-tvr-clips-of-the-week-july-30-video/
+</guid>
+<g:image_link>
+http://www.blogcdn.com/www.aoltv.com/media/2011/07/albajo_thumbnail.jpg
+</g:image_link>
+<c:author url="http://www.aoltv.com/bloggers/alex-moaba">Alex Moaba</c:author>
+</item>
+<item>
+<title>
+Lady Gaga Performs, Results on 'So You Think You Can Dance' (VIDEO)
+</title>
+<link>
+http://www.aoltv.com/2011/07/29/lady-gaga-performs-results-so-you-think-you-can-dance-video/
+</link>
+<description>
+<![CDATA[
+It was awfully nice of Lady Gaga to share the spotlight, even if it wasn't intentional with former 'So You Think You Can Dance' (Thu., 8PM ET on FOX) contestant Mark Kanemura. Kanemura has been very busy since his Top 6 finish in Season 4, but he can currently be found dancing on Gaga's 'Monster Ball' tour. Gaga wasn't on the judging panel tonight, so she could perform a medley of 'The Edge of Glory' and 'You and I.' While she sounded a little nasal at first (reminiscent of her first ...
+]]>
+</description>
+<pubDate>Fri, 29 Jul 2011 02:45:00 EST</pubDate>
+<source url="http://www.aoltv.com">AOL TV</source>
+<guid isPermaLink="true">
+http://www.aoltv.com/2011/07/29/lady-gaga-performs-results-so-you-think-you-can-dance-video/
+</guid>
+<g:image_link>
+http://www.blogcdn.com/www.aoltv.com/media/2011/07/so.you.think.you.can.dance.110728.lady.gaga_thumbnail.jpg
+</g:image_link>
+<c:author url="http://www.aoltv.com/bloggers/jason-hughes">Jason Hughes</c:author>
+</item>
+<item>
+<title>
+Lady Gaga Is Ready to Hire One of the 'SYTYCD' Finalists Right Now (VIDEO)
+</title>
+<link>
+http://www.aoltv.com/2011/07/28/lady-gaga-ready-to-hire-sytycd-finalist-video/
+</link>
+<description>
+<![CDATA[
+After a somewhat slow start, it turned into one of the most impressive performance episodes of 'So You Think You Can Dance' (Wed., 8PM ET on FOX) so far this season. Joining the judging panel for the week were 'Chicago' director Rob Marshall and Lady Gaga, who was ready to hire one dancer almost right there on the spot. We think the leaders of the Top 8 emerged fully formed this week. In fact, we've had a Top 4 in our minds, two guys and two girls, for a few weeks, but they really solidified ...
+]]>
+</description>
+<pubDate>Thu, 28 Jul 2011 00:44:00 EST</pubDate>
+<source url="http://www.aoltv.com">AOL TV</source>
+<guid isPermaLink="true">
+http://www.aoltv.com/2011/07/28/lady-gaga-ready-to-hire-sytycd-finalist-video/
+</guid>
+<g:image_link>
+http://www.blogcdn.com/www.aoltv.com/media/2011/07/so.you.think.you.can.dance.110727_thumbnail.jpg
+</g:image_link>
+<c:author url="http://www.aoltv.com/bloggers/jason-hughes">Jason Hughes</c:author>
+</item>
+<item>
+<title>
+Report: Lady Gaga Is 'Sick and Obsessed with her Weight'
+</title>
+<link>
+http://www.popeater.com/2011/07/07/report-lady-gaga-is-sick-and-obsessed-with-her-weight/
+</link>
+<description>
+<![CDATA[
+Forget the 'Edge of Glory,' according to a report from Star magazine (via Radar Online), Lady Gaga is on a dangerous edge when it comes to her health. From her eating habits to her extreme self-scrutinizing, apparently it is just a matter of time before Gaga's unhealthy lifestyle catches up with her. "Those who have worked with her on tour reported to me that Gaga barely ate for weeks at a time to fit into her costume," investigative journalist, Ian Halperin told Star. "She is sick and ...
+]]>
+</description>
+<pubDate>Thu, 07 Jul 2011 09:30:00 EST</pubDate>
+<source url="http://www.popeater.com">PopEater</source>
+<guid isPermaLink="true">
+http://www.popeater.com/2011/07/07/report-lady-gaga-is-sick-and-obsessed-with-her-weight/
+</guid>
+<g:image_link>
+http://www.blogcdn.com/www.popeater.com/media/2011/07/1310044787730_thumbnail.jpeg
+</g:image_link>
+<c:author url="http://www.popeater.com/bloggers/kiki-von-glinow">Kiki Von Glinow</c:author>
+</item>
+<item>
+<title>
+Lady Gaga Slams Claims She's Using the Gay Community to Boost Record Sales
+</title>
+<link>
+http://www.popeater.com/2011/07/05/lady-gaga-gay-community-record-sales/
+</link>
+<description>
+<![CDATA[
+Lady Gaga and the gay community seem to go together like PB&amp;J, but the pop star has recently been criticized for exploiting her LGBT fans to sell records -- a "ridiculous" claim Gaga isn't taking lightly. "My love for my gay fans is just pure, authentic love for them as supporters of me from the beginning, and me feeling connected to their struggles as someone who is a part of their fight," Gaga tells The Advocate. Gaga, who admits in the interview that she considers herself a member ...
+]]>
+</description>
+<pubDate>Tue, 05 Jul 2011 18:30:00 EST</pubDate>
+<source url="http://www.popeater.com">PopEater</source>
+<guid isPermaLink="true">
+http://www.popeater.com/2011/07/05/lady-gaga-gay-community-record-sales/
+</guid>
+<g:image_link>
+http://www.blogcdn.com/www.popeater.com/media/2011/07/1309897269824_thumbnail.jpg
+</g:image_link>
+<c:author url="http://www.popeater.com/bloggers/kelly-fisher">Kelly Fisher</c:author>
+</item>
+<item>
+<title>Shark Week 2011: Break Out the Floss (VIDEO)</title>
+<link>
+http://www.aoltv.com/2011/07/05/shark-week-2011-break-out-the-floss-video/
+</link>
+<description>
+<![CDATA[
+Shark Week is right around the corner -- thank goodness! -- and with it comes a brand new promo. This isn't just any new promo. No, Discovery has tapped Lady Gaga's 'Teeth' as background to clips of sharks biting things. With lyrics as descriptive as "Show me your teeth!" it's quite fitting actually. However, this isn't the first time Lady Gaga's 'Teeth' has been used to promote a popular program involving sharp-toothed stars. Nope, The CW did it with 'The Vampire Diaries' and it was equally ...
+]]>
+</description>
+<pubDate>Tue, 05 Jul 2011 18:00:00 EST</pubDate>
+<source url="http://www.aoltv.com">AOL TV</source>
+<guid isPermaLink="true">
+http://www.aoltv.com/2011/07/05/shark-week-2011-break-out-the-floss-video/
+</guid>
+<g:image_link>
+http://www.blogcdn.com/www.aoltv.com/media/2011/07/shark-week-300-discovery_thumbnail.jpg
+</g:image_link>
+<c:author url="http://www.aoltv.com/bloggers/chris-harnick">Chris Harnick</c:author>
+</item>
+<item>
+<title>
+Lady Gaga Praises Nick Jonas' Cover of 'The Edge of Glory' (Video)
+</title>
+<link>
+http://www.popeater.com/2011/07/05/lady-gaga-nick-jonas-cover-edge-of-glory/
+</link>
+<description>
+<![CDATA[
+Nick Jonas gave Lady Gaga's 'The Edge of Glory' his best shot, and it looks like Mother Monster really enjoyed it. He performed the hit at a recent live show and has received rave reviews from the singer herself. After seeing the 18-year-old's cover on YouTube, Gaga took to her Twitter page and posted a link to video footage of the acoustic performance along with her stamp of approval. "Swoon! Nick Jonas singing The Edge of Glory," Gaga tweeted on Sunday (July 3). "On my way to press ...
+]]>
+</description>
+<pubDate>Tue, 05 Jul 2011 15:30:00 EST</pubDate>
+<source url="http://www.popeater.com">PopEater</source>
+<guid isPermaLink="true">
+http://www.popeater.com/2011/07/05/lady-gaga-nick-jonas-cover-edge-of-glory/
+</guid>
+<g:image_link>
+http://www.blogcdn.com/www.popeater.com/media/2011/07/nick-jonas-200km0705_thumbnail.jpg
+</g:image_link>
+<c:author url="http://www.popeater.com/bloggers/aol-music-editors">AOL Music Editors</c:author>
+</item>
+<item>
+<title>
+Lady Gaga Does Yoga in a Black Lace Unitard (Photos)
+</title>
+<link>
+http://www.popeater.com/2011/07/05/lady-gaga-yoga-lace-unitard-photos/
+</link>
+<description>
+<![CDATA[
+There is nothing ordinary about Lady Gaga, including her workout attire. The popstar hit yoga studio, Pure Yoga, in downtown Taipei, Taiwan over the weekend, and her outfit was anything but subtle. She did her sun salutations sporting a black and gold, glitter and lace one-piece, and even left the studio in her infamous super high heels. The 'Edge of Glory' singer drew quite the crowd outside the studio. Nearly 500 fans waited to catch a glimpse of her exiting the class, holding on to her ...
+]]>
+</description>
+<pubDate>Tue, 05 Jul 2011 14:00:00 EST</pubDate>
+<source url="http://www.popeater.com">PopEater</source>
+<guid isPermaLink="true">
+http://www.popeater.com/2011/07/05/lady-gaga-yoga-lace-unitard-photos/
+</guid>
+<g:image_link>
+http://www.blogcdn.com/www.popeater.com/media/2011/07/lady-gaga-200km0705_thumbnail.jpg
+</g:image_link>
+<c:author url="http://www.popeater.com/bloggers/katelyn-mullen">Katelyn Mullen</c:author>
+</item>
+<item>
+<title>
+'So You Think You Can Dance' Nabs Lady Gaga as Guest Judge
+</title>
+<link>
+http://www.aoltv.com/2011/07/04/so-you-think-you-can-dance-nabs-lady-gaga-as-guest-judge/
+</link>
+<description>
+<![CDATA[
+Lady Gaga has already dished out the advice as a guest mentor on the 'American Idol' this year, and now we hear that she'll be bringing her brand of theatricality to 'So You Think You Can Dance' later on this summer. A Fox source told 'Entertainment Weekly' that Lady Gaga will be a guest judge on 'SYTYCD' sometime before the talent show's Season 8 Finale in August. Judge Nigel Lythgoe hinted at a Gaga appearance during a recent interview with Yahoo. He said she'll "give great advice on how ...
+]]>
+</description>
+<pubDate>Mon, 04 Jul 2011 09:30:00 EST</pubDate>
+<source url="http://www.aoltv.com">AOL TV</source>
+<guid isPermaLink="true">
+http://www.aoltv.com/2011/07/04/so-you-think-you-can-dance-nabs-lady-gaga-as-guest-judge/
+</guid>
+<g:image_link>
+http://www.blogcdn.com/www.aoltv.com/media/2011/07/lady-gaga-ap_thumbnail.jpg
+</g:image_link>
+<c:author url="http://www.aoltv.com/bloggers/catherine-lawson">Catherine Lawson</c:author>
+</item>
+<item>
+<title>
+Lady Gaga to Guest-Star as Judge on 'So You Think You Can Dance'
+</title>
+<link>
+http://www.popeater.com/2011/07/02/lady-gaga-judge-so-you-think-you-can-dance/
+</link>
+<description>
+<![CDATA[
+Lady Gaga has been confirmed as a guest judge on an upcoming episode of the Fox talent competition 'So You Think You Can Dance.' Nigel Lythgoe, executive producer and longtime judge on the hit series, has confirmed that Gaga will drop by the set later this season, serving on the judges' panel as contestants dance their hearts out. Mother Monster is no stranger to reality show appearances. She made her debut as a contestant mentor on the most recent season of Fox's 'American Idol' -- and ...
+]]>
+</description>
+<pubDate>Sat, 02 Jul 2011 11:12:00 EST</pubDate>
+<source url="http://www.popeater.com">PopEater</source>
+<guid isPermaLink="true">
+http://www.popeater.com/2011/07/02/lady-gaga-judge-so-you-think-you-can-dance/
+</guid>
+<g:image_link>
+http://www.blogcdn.com/www.popeater.com/media/2011/07/gaga-green.jpg_thumbnail.jpg
+</g:image_link>
+<c:author url="http://www.popeater.com/bloggers/aol-music-editors">AOL Music Editors</c:author>
+</item>
+<item>
+<title>
+Lady Gaga Sued for Scamming Japan Earthquake Charity
+</title>
+<link>
+http://www.popeater.com/2011/06/27/lady-gaga-scam-lawsuit-japan-earthquake-charity/
+</link>
+<description>
+<![CDATA[
+From gay rights to disaster relief, Lady Gaga is always at the forefront of activism or charity outreach, but now, one law firm is crying false when it comes to Gaga's Japan earthquake relief efforts. A Southfield, Michigan based law firm, 1-800-LAW-FIRM, recently filed a class action lawsuit against mother monster for pocketing a portion of the proceeds from the sale of her 'We Pray For Japan' wristbands, benefiting relief for Japan's March earthquake -- proceeds gathered from customers who ...
+]]>
+</description>
+<pubDate>Mon, 27 Jun 2011 11:35:00 EST</pubDate>
+<source url="http://www.popeater.com">PopEater</source>
+<guid isPermaLink="true">
+http://www.popeater.com/2011/06/27/lady-gaga-scam-lawsuit-japan-earthquake-charity/
+</guid>
+<g:image_link>
+http://www.blogcdn.com/www.popeater.com/media/2011/06/1309185860080_thumbnail.jpeg
+</g:image_link>
+<c:author url="http://www.popeater.com/bloggers/kiki-von-glinow">Kiki Von Glinow</c:author>
+</item>
+<item>
+<title>
+Pink, Russell Simmons, Lady Gaga Celebrate a New Gay Marriage Law
+</title>
+<link>
+http://www.popeater.com/2011/06/25/pink-russell-simmons-lady-gaga-celebrate-gay-marriage/
+</link>
+<description>
+<![CDATA[
+Late on Friday, New York became the sixth (and most populous) state in the nation to pass a law allowing gay marriage, and in celebration, stars joined supporters of the measure to cheer the historic milestone on Twitter. Pink gave an all-caps jump for joy, shouting, "CONGRATULATIONS!!!!! ABOUT
+]]>
+<![CDATA[
+TIME!" Neil Patrick Harris tweeted, "It PASSED! Marriage equality in NY!! Yes!! Progress!! Thank you everyone who worked so hard on this!! A historic night!" His elated partner, David Burtka, ...
+]]>
+</description>
+<pubDate>Sat, 25 Jun 2011 12:37:00 EST</pubDate>
+<source url="http://www.popeater.com">PopEater</source>
+<guid isPermaLink="true">
+http://www.popeater.com/2011/06/25/pink-russell-simmons-lady-gaga-celebrate-gay-marriage/
+</guid>
+<g:image_link>
+http://www.blogcdn.com/www.popeater.com/media/2011/06/pink-200cf0122_thumbnail.jpg
+</g:image_link>
+<c:author url="http://www.popeater.com/bloggers/christine-fenno">Christine Fenno</c:author>
+</item>
+<item>
+<title>
+Celebrities Push to Pass Marriage Equality Bill in New York
+</title>
+<link>
+http://www.popeater.com/2011/06/24/lady-gaga-neil-patrick-harris-celebrities-twitter-gay-marriage-new-york-senate-bill/
+</link>
+<description>
+<![CDATA[
+It certainly has been a groundbreaking yet nail biting week for marriage equality in New York as same-sex marriage advocates have come within one Republican Senate vote to pass the marriage equality bill -- although the vote still has yet to take place. But the hesitation to bring the bill to a vote -- on behalf of Republicans -- is not for the lack of trying and persuasion from our favorite LGBT supporting celebrities. "I'd sure love to get married," Neil Patrick Harris tweeted ...
+]]>
+</description>
+<pubDate>Fri, 24 Jun 2011 17:45:00 EST</pubDate>
+<source url="http://www.popeater.com">PopEater</source>
+<guid isPermaLink="true">
+http://www.popeater.com/2011/06/24/lady-gaga-neil-patrick-harris-celebrities-twitter-gay-marriage-new-york-senate-bill/
+</guid>
+<g:image_link>
+http://www.blogcdn.com/www.popeater.com/media/2011/06/1308950338023_thumbnail.jpeg
+</g:image_link>
+<c:author url="http://www.popeater.com/bloggers/kiki-von-glinow">Kiki Von Glinow</c:author>
+</item>
+</channel>
+</rss>
