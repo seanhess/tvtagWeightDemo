@@ -50,8 +50,8 @@ manualScoreInsert tags = do
 
 -- Runs our actions on a given pipe / db
 
-run :: (Show a) => Pipe -> Action IO a -> IO (Either Failure a)
-run pipe actions = do
+runTags :: (Show a) => Pipe -> Action IO a -> IO (Either Failure a)
+runTags pipe actions = do
     e <- access pipe master "testtags" actions
     return e
 
@@ -62,15 +62,15 @@ populateMockData = do
     manualScoreInsert gagaDocs
     return ()
 
-connectDb = runIOE $ connect (host "127.0.0.1")
+connectTagsDb = runIOE $ connect (host "127.0.0.1")
     
-main :: IO ()
-main = do
-    pipe <- connectDb
-    run pipe populateMockData   
-    tags <- run pipe (rawFind "Lady Gaga")
-    print tags
-    return ()
+-- main :: IO ()
+-- main = do
+--     pipe <- connectTagsDb
+--     runTags pipe populateMockData   
+--     tags <- runTags pipe (rawFind "Lady Gaga")
+--     print tags
+--     return ()
 
 
 
