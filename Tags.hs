@@ -4,64 +4,77 @@ module Tags where
 
 import Prelude hiding (lookup)
 import Data.Bson
-import Control.Applicative
-import Control.Monad.IO.Class
-import Control.Monad.IO.Control
 import Database.MongoDB
 
-import Mongo
+import Data.Aeson (ToJSON(..), encode, (.=), object)
+import qualified Data.Aeson
 
--- Better yet, can I make this function return type: Action m a -> m (Either Failure a)
--- I need to know more first
--- insertTags :: MonadIO m => (Action m () -> t) -> [Document] -> t
--- insertTags db tags = db $ insertMany_ "tags" tags
-
--- findTags db term = db $ find (select ["title" =: term] "tags") >>= rest
--- findTagsGreater db term = db $ find (select ["title" =: ["$gte" =: term]] "tags") >>= rest
--- findTags db term = db $ find (select ["title" =: Regex term "i"] "tags") >>= rest
-
-type SearchTerm = UString
-
+-- My Data Type
 data Tag = Tag {
     source :: String,
     title :: String,
     url :: String
 } deriving (Eq, Show, Read)
 
-rawDocument :: Tag -> Document
-rawDocument tag = ["_id" =: (url tag), "source" =: (source tag), "title" =: (title tag), "url" =: (url tag)]
+instance ToJSON Tag where
+    toJSON (Tag source title url) = object ["source" .= source, "title" .= title, "url" .= url]
+
+toDocument :: Tag -> Document
+toDocument (Tag source title url) = ["_id" =: url, "source" =: source, "title" =: title, "url" =: url]
+
+-- Convert a tag document to a tag
+fromDocument :: Document -> Tag
+fromDocument fs = Tag source title url
+    where source = stringValue $ valueAt "source" fs
+          title = stringValue $ valueAt "title" fs
+          url = stringValue $ valueAt "url" fs
+
+stringValue :: Value -> String
+stringValue (Data.Bson.String s) = Data.Bson.unpack s
+stringValue _ = ""
 
 -- Raw Tags --
-rawFind   db term = db $ find (select ["title" =: Regex term "i"] "raw") >>= rest 
-rawInsert db tags = do
-    db $ delete $ select [] "raw"
-    db $ insertMany_ "raw" tags
+rawFind :: UString -> Action IO [Document]
+rawFind term = find (select ["title" =: Regex term "i"] "raw") >>= rest 
+
+rawInsert :: [Document] -> Action IO [Value]
+rawInsert tags = do
+    delete $ select [] "raw"
+    insertMany "raw" tags
 
 -- Manual Scoring --
-manualScoreFind db term = db $ find (select ["title" =: Regex term "i"] "manual") >>= rest 
-manualScoreInsert db tags = do
-    db $ delete $ select [] "manual"
-    db $ insertMany_ "manual" tags
+manualScoreFind term = find (select ["title" =: Regex term "i"] "manual") >>= rest 
+manualScoreInsert tags = do
+    delete $ select [] "manual"
+    insertMany_ "manual" tags
 
-initTests db = do
-    rawInsert db $ map rawDocument mockGaga
-    manualScoreInsert db $ map rawDocument mockGaga
+-- Runs our actions on a given pipe / db
 
+run :: (Show a) => Pipe -> Action IO a -> IO (Either Failure a)
+run pipe actions = do
+    e <- access pipe master "testtags" actions
+    return e
+
+populateMockData :: Action IO ()
+populateMockData = do
+    let gagaDocs = map toDocument mockGaga
+    rawInsert gagaDocs
+    manualScoreInsert gagaDocs
+    return ()
+
+connectDb = runIOE $ connect (host "127.0.0.1")
+    
+main :: IO ()
 main = do
-    pipe <- mconnect "127.0.0.1"
-    let db = mdb pipe
-
-    -- initialize
-    initTests db
-
-    Right docs <- rawFind db "Lady Gaga"
-    print docs
-
-    print "DONE"
+    pipe <- connectDb
+    run pipe populateMockData   
+    tags <- run pipe (rawFind "Lady Gaga")
+    print tags
+    return ()
 
 
 
-
+-- MOCK LADY GAGA DATA --
 mockGaga = [ Tag "wikipedia" "Lady Gaga" "http://en.wikipedia.org/wiki/Lady_gaga"
            , Tag "wikipedia" "Lady Gaga Presents the Monster Ball Tour" "http://en.wikipedia.org/wiki/Lady_Gaga_Presents_the_Monster_Ball_Tour:_At_Madison_Square_Garden"
            , Tag "wikipedia" "Lady Gaga discography" "http://en.wikipedia.org/wiki/Lady_Gaga_discography"
@@ -98,21 +111,8 @@ mockGaga = [ Tag "wikipedia" "Lady Gaga" "http://en.wikipedia.org/wiki/Lady_gaga
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+-- Some examples
+-- findTags db term = db $ find (select ["title" =: term] "tags") >>= rest
+-- findTagsGreater db term = db $ find (select ["title" =: ["$gte" =: term]] "tags") >>= rest
+-- findTags db term = db $ find (select ["title" =: Regex term "i"] "tags") >>= rest
 

@@ -17,13 +17,14 @@ import Data.Maybe
 import Air.Env hiding ((.), object, div, head, (/))
 import Prelude ((.))
 
-import Hack2.Contrib.Request
+import Hack2.Contrib.Request hiding (host)
 import qualified Data.ByteString.Char8 as B
 import qualified Data.ByteString.Lazy.Char8 as Lazy
 
 import Hack2.Contrib.Middleware.SimpleAccessLogger
 
-import Database.MongoDB (Failure, Value(..), Document)
+import Database.MongoDB.Connection (host)
+import Database.MongoDB (Failure, Value(..), Document, runIOE, access, master, connect, Host)
 import Data.Bson ((=:), valueAt)
 import qualified Data.CompactString as CS
 import qualified Data.Bson
@@ -35,10 +36,7 @@ import Mongo
 import Text.Hastache
 import Text.Hastache.Context
 
--- default on port 3000
-
-l2b :: Lazy.ByteString -> B.ByteString
-l2b ls = B.concat $ Lazy.toChunks ls
+import Control.Monad.IO.Class
 
 -- some helper methods for json
 sendJson :: B.ByteString -> AppMonad
@@ -47,29 +45,34 @@ sendJson x = send "application/json; charset=utf-8; charset=utf-8" x
 json :: (ToJSON a) => a -> AppMonad
 json x = sendJson $ l2b $ encode x
 
+l2b :: Lazy.ByteString -> B.ByteString
+l2b ls = B.concat $ Lazy.toChunks ls
+
+
+
+
+
 -- I'm not sure something like this exists
 send :: String -> B.ByteString -> AppMonad
 send mimeType x = do
     update - set_content_type (B.pack mimeType)
     update - set_body_bytestring - Lazy.fromChunks [x]
 
-
 sendHtml = Network.Miku.html
+
+instance ToJSON Failure where
+    toJSON f = Data.Aeson.Null
 
 -- Sample Data Object for JSON --
 data Thang = Thang { ttt :: String } deriving (Eq, Show)
 instance ToJSON Thang where
     toJSON (Thang ttt) = object ["ttt" .= ttt]
 
-instance ToJSON Failure where
-    toJSON f = Data.Aeson.Null
 
--- muVar :: (MuVar a) => Data.Bson.Value -> a
--- muVar _ = MuVariable "HI"
 
--- 1 -- I can convert everything to algebraic data types
--- 2 -- I can figure out how to get Data.BSON to print
 
+
+-- Converting Documents to HTML Templating --
 valueToMu :: Value -> MuType m
 valueToMu (Data.Bson.String v) = MuVariable $ Data.Bson.unpack v
 valueToMu v = MuVariable $ show v 
@@ -82,11 +85,14 @@ main :: IO ()
 main = do
     putStrLn "server started on port 3000..."
 
-    pipe <- mconnect "127.0.0.1"
-    let db = mdb pipe
+    pipe <- runIOE $ connect $ host "127.0.0.1"
+    let db act = access pipe master "testtags" act
+    initTests db
 
+    -- views --
     tagsView <- readFile "views/tags.mustache"
   
+    -- run the server --
     run . miku - do
     
         -- before return
@@ -95,13 +101,12 @@ main = do
         middleware - simple_access_logger Nothing
 
         get "/tags.json" - do
-            result <- findTags db "Lady Gaga" 
+            result <- rawFind db "Lady Gaga" 
             let Right tags = result
-            let Left failure = result
             json tags
 
         get "/tags.html" - do
-            result <- findTags db "Lady Gaga"
+            result <- rawFind db "Lady Gaga"
             let Right tags = result
     
             let ctx "name" = MuVariable "Woot"
