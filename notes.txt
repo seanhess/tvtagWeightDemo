@@ -22,13 +22,12 @@ THE REAL STEPS
     [√] Get json running with bson data
     [√] Get real data / route in there
 
-
 [√] Rob: what do the endpoints look like?
     - 1. Get entities
     - 2. Hit up each endpoint for information about it. 
     - 3. Reduce into a single document (so sense of importance or order)
 
-[ ] API: Make a web route returning HTML representation
+[√] API: Make a web route returning HTML representation
     http://stackoverflow.com/questions/5770168/templating-packages-for-haskell
 
 [ ] API 2: Manually add a search term and a score to each document
