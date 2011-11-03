@@ -85,9 +85,8 @@ main :: IO ()
 main = do
     putStrLn "server started on port 3000..."
 
-    pipe <- runIOE $ connect $ host "127.0.0.1"
-    let db act = access pipe master "testtags" act
-    initTests db
+    -- pipe <- connectTagsDb
+    -- runTags pipe populateMockData
 
     -- views --
     tagsView <- readFile "views/tags.mustache"
@@ -101,12 +100,14 @@ main = do
         middleware - simple_access_logger Nothing
 
         get "/tags.json" - do
-            result <- rawFind db "Lady Gaga" 
+            result <- readFile "views/tags.mustache"
+            -- result <- runTags pipe $ rawFind "Lady Gaga" 
             let Right tags = result
             json tags
 
         get "/tags.html" - do
-            result <- rawFind db "Lady Gaga"
+            result <- readFile "views/tags.mustache"
+            -- result <- runTags pipe $ rawFind "Lady Gaga"
             let Right tags = result
     
             let ctx "name" = MuVariable "Woot"
