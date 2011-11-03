@@ -6,6 +6,7 @@ import Prelude hiding (lookup)
 import Data.Bson
 import Database.MongoDB
 
+import Control.Monad.IO.Class
 import Data.Aeson (ToJSON(..), encode, (.=), object)
 import qualified Data.Aeson
 
@@ -50,10 +51,13 @@ manualScoreInsert tags = do
 
 -- Runs our actions on a given pipe / db
 
-runTags :: (Show a) => Pipe -> Action IO a -> IO (Either Failure a)
-runTags pipe actions = do
+runTagsInner :: (MonadIO m) => Pipe -> Action m a -> m (Either Failure a)
+runTagsInner pipe actions = do
     e <- access pipe master "testtags" actions
     return e
+
+runTags :: MonadIO m => Pipe -> Action IO a -> m (Either Failure a)
+runTags pipe actions = liftIO $ runTags pipe actions
 
 populateMockData :: Action IO ()
 populateMockData = do

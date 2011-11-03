@@ -85,8 +85,8 @@ main :: IO ()
 main = do
     putStrLn "server started on port 3000..."
 
-    -- pipe <- connectTagsDb
-    -- runTags pipe populateMockData
+    pipe <- connectTagsDb
+    runTags pipe populateMockData
 
     -- views --
     tagsView <- readFile "views/tags.mustache"
@@ -100,14 +100,14 @@ main = do
         middleware - simple_access_logger Nothing
 
         get "/tags.json" - do
-            result <- readFile "views/tags.mustache"
-            -- result <- runTags pipe $ rawFind "Lady Gaga" 
+            -- tags <- liftIO $ readFile "views/tags.mustache"
+            result <- runTags pipe $ rawFind "Lady Gaga"  -- without liftIO, I die
             let Right tags = result
             json tags
 
         get "/tags.html" - do
-            result <- readFile "views/tags.mustache"
-            -- result <- runTags pipe $ rawFind "Lady Gaga"
+            -- tags <- liftIO $ readFile "views/tags.mustache"
+            result <- runTags pipe $ rawFind "Lady Gaga"
             let Right tags = result
     
             let ctx "name" = MuVariable "Woot"
