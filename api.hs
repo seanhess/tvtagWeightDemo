@@ -1,16 +1,20 @@
-{-# LANGUAGE OverloadedStrings, DeriveDataTypeable #-}
+{-# LANGUAGE OverloadedStrings, DeriveDataTypeable, ExtendedDefaultRules, FlexibleInstances #-}
 
 import Control.Monad.Reader
 import Hack2.Contrib.Response
 import Hack2.Handler.SnapServer
 import Hack2.Contrib.Utils (show_bytestring)
 
-import Network.Miku
+import Data.Aeson (ToJSON(..), encode, (.=), object)
+import qualified Data.Aeson
+
+import Network.Miku hiding (html)
+import qualified Network.Miku
 import Network.Miku.Engine
 import Network.Miku.Utils
 import Network.Miku.Type
 import Data.Maybe
-import Air.Env hiding ((.))
+import Air.Env hiding ((.), object, div, head, (/))
 import Prelude ((.))
 
 import Hack2.Contrib.Request
@@ -19,17 +23,29 @@ import qualified Data.ByteString.Lazy.Char8 as Lazy
 
 import Hack2.Contrib.Middleware.SimpleAccessLogger
 
-import Text.JSON
-import Text.JSON.Generic
+import Database.MongoDB (Failure, Value(..), Document)
+import Data.Bson ((=:), valueAt)
+import qualified Data.CompactString as CS
+import qualified Data.Bson
+import qualified BsonJson
+
+import Tags
+import Mongo
+
+import Text.Hastache
+import Text.Hastache.Context
 
 -- default on port 3000
+
+l2b :: Lazy.ByteString -> B.ByteString
+l2b ls = B.concat $ Lazy.toChunks ls
 
 -- some helper methods for json
 sendJson :: B.ByteString -> AppMonad
 sendJson x = send "application/json; charset=utf-8; charset=utf-8" x
 
-json :: (Data a) => a -> AppMonad
-json x = sendJson $ B.pack $ encode $ toJSON x
+json :: (ToJSON a) => a -> AppMonad
+json x = sendJson $ l2b $ encode x
 
 -- I'm not sure something like this exists
 send :: String -> B.ByteString -> AppMonad
@@ -37,11 +53,39 @@ send mimeType x = do
     update - set_content_type (B.pack mimeType)
     update - set_body_bytestring - Lazy.fromChunks [x]
 
-data Thang = Thang { ttt :: String } deriving (Eq, Show, Typeable, Data)
+
+sendHtml = Network.Miku.html
+
+-- Sample Data Object for JSON --
+data Thang = Thang { ttt :: String } deriving (Eq, Show)
+instance ToJSON Thang where
+    toJSON (Thang ttt) = object ["ttt" .= ttt]
+
+instance ToJSON Failure where
+    toJSON f = Data.Aeson.Null
+
+-- muVar :: (MuVar a) => Data.Bson.Value -> a
+-- muVar _ = MuVariable "HI"
+
+-- 1 -- I can convert everything to algebraic data types
+-- 2 -- I can figure out how to get Data.BSON to print
+
+valueToMu :: Value -> MuType m
+valueToMu (Data.Bson.String v) = MuVariable $ Data.Bson.unpack v
+valueToMu v = MuVariable $ show v 
+
+docContext :: (Monad m) => Document -> MuContext m
+docContext source = mkStrContext ctx
+    where ctx name = valueToMu (Data.Bson.valueAt (CS.pack name) source) 
 
 main :: IO ()
 main = do
     putStrLn "server started on port 3000..."
+
+    pipe <- mconnect "127.0.0.1"
+    let db = mdb pipe
+
+    tagsView <- readFile "views/tags.mustache"
   
     run . miku - do
     
@@ -50,10 +94,27 @@ main = do
 
         middleware - simple_access_logger Nothing
 
+        get "/tags.json" - do
+            result <- findTags db "Lady Gaga" 
+            let Right tags = result
+            let Left failure = result
+            json tags
+
+        get "/tags.html" - do
+            result <- findTags db "Lady Gaga"
+            let Right tags = result
+    
+            let ctx "name" = MuVariable "Woot"
+                context "length" =  MuVariable $ length tags
+                context "tags" = MuList $ map docContext tags 
+
+            res <- hastacheStr defaultConfig (encodeStr tagsView) (mkStrContext context) 
+            sendHtml $ l2b res
+
         -- params are ? params
         get "/bench" - do
           name <- ask ^ params ^ lookup "name" ^ fromMaybe "nobody"
-          html ("<h1>" + name + "</h1>")
+          sendHtml ("<h1>" + name + "</h1>")
 
         -- simple
         get "/hello"    (text "hello world")
@@ -62,7 +123,7 @@ main = do
             json (Thang "wooot")
 
         get "/bson" - do
-            text "HI"
+            json ["key" =: "value", "woot" =: "henry", "sub" =: ["one" =: 1], "arr" =: [1,2,3,4]]
 
         get "/hello/:name" - do
             caps <- captures
@@ -78,7 +139,7 @@ main = do
         get "/source"    - text =<< io (B.readFile "api.hs")
         
         -- html output
-        get "/html"     (html "<html><body><p>miku power!</p></body></html>")
+        get "/html"     (sendHtml "<html><body><p>miku power!</p></body></html>")
         
         get "/" - do
           update - set_status 203

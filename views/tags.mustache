@@ -1,0 +1,23 @@
+<html>
+<head>
+    <style>
+        body, table {
+            font-size: 12 px;
+            font-family: Helvetica;
+        }
+
+        table td {
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>{{length}} Tags</h1>
+    <table>
+        <tr><th>Source</th><th>Title</th><th>Url</th></tr>
+        {{#tags}}
+            <tr><td>{{source}}</td><td style="width: 300;">{{title}}</td><td><a href="{{url}}" target="_blank">{{url}}</a></td></tr>
+        {{/tags}}
+    </table>
+</body>
