@@ -1,4 +1,4 @@
-{-# LANGUAGE OverloadedStrings, DeriveDataTypeable, ExtendedDefaultRules, FlexibleInstances #-}
+{-# LANGUAGE OverloadedStrings, ExtendedDefaultRules #-}
 
 import Control.Monad.Reader
 import Hack2.Contrib.Response
