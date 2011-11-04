@@ -132,6 +132,7 @@ mockSearchTerms = [ SearchTerm "lady gaga" 100 "http://en.wikipedia.org/wiki/Lad
                   , SearchTerm "lady gaga" 80 "http://www.theinsider.com/music/45833_Bad_Romance_Named_All_Time_100_Songs/index.html"
                   , SearchTerm "lady gaga" 60 "http://en.wikipedia.org/wiki/Lady_Gaga_discography"
                   , SearchTerm "lady gaga" 40 "http://www.aoltv.com/2011/09/13/lady-gaga-madonna-inspiration-gaga-by-gaultier-video/"
+                  , SearchTerm "lady" 100 "http://en.wikipedia.org/wiki/Lady"
                   ]
 
 
@@ -153,6 +154,7 @@ mockGaga = [ Tag "wikipedia" "Lady Gaga" "http://en.wikipedia.org/wiki/Lady_gaga
            , Tag "aoltv" "Lady Gaga Talks About Madonna as Inspiration on 'Gaga by Gaultier' (VIDEO)" "http://www.aoltv.com/2011/09/13/lady-gaga-madonna-inspiration-gaga-by-gaultier-video/"
            , Tag "aoltv" "Lady Gaga, Britney Spears, Beyonce and Cloris Leachman Highlight the 2011 VMAs (VIDEO)" "http://www.aoltv.com/2011/08/29/women-win-big-vmas-highlights-list-of-winners-video/"
            , Tag "aoltv" "Lady Gaga Lends Voice to 'The Simpsons,' Andre Braugher Heading to 'SVU' and More Casting News" "http://www.aoltv.com/2011/08/23/lady-gaga-the-simpsons/"
+           , Tag "wikipedia" "Lady" "http://en.wikipedia.org/wiki/Lady"
            ]
 
 

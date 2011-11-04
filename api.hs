@@ -116,8 +116,11 @@ main = do
             res <- hastacheStr defaultConfig (encodeStr tagsView) (mkStrContext context) 
             sendHtml $ l2b res
 
-        get "/manual.html" - do
-            Right tags <- liftIO $ runTags pipe $ findManual "lady gaga"
+        get "/manual/:term" - do
+            caps <- captures
+            let term = (lookup "term" ^ fromMaybe "nobody") caps
+            let cleanTerm = B.map (\c -> if (c == '+') then ' ' else c) term
+            Right tags <- liftIO $ runTags pipe $ findManual $ bsToCs cleanTerm
             
             let context "tags" = MuList $ map tagContext tags 
                 tagContext tag = mkStrContext tagCtx

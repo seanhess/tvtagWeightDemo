@@ -9,7 +9,7 @@ MDB is a function to pass around
 
 -}
 
-module MongoExt (mdb) where
+module MongoExt (mdb, csToTxt, bsToTxt, bsToCs) where
 
 import Data.Aeson
 import qualified Data.Aeson.Types as T
@@ -55,6 +55,9 @@ csToTxt cs = Text.pack $ CS.unpack cs
 
 bsToTxt :: BS.ByteString -> Text.Text
 bsToTxt bs = Text.pack $ BS.unpack bs
+
+bsToCs :: BS.ByteString -> UString
+bsToCs bs = CS.pack $ BS.unpack bs
 
 fieldToPair :: Field -> T.Pair
 fieldToPair f = key .= val
