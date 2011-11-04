@@ -39,6 +39,18 @@ tagFromDocument fs = Tag source title url term score
           ival _ = 0
 
 
+setTagTermScore :: String -> Int -> Tag -> Tag
+setTagTermScore term score tag = Tag (source tag) (title tag) (url tag) term score
+
+setTagScore :: Int -> Tag -> Tag
+setTagScore score tag = Tag (source tag) (title tag) (url tag) (term tag) score
+
+-- doesn't have a term or score
+simpleTag :: String -> String -> String -> Tag
+simpleTag source title url = Tag source title url "" 0
+
+
+
 
 
 stringValue :: Value -> String
@@ -58,16 +70,28 @@ rawInsert tags = do
 -- Manual Search Terms --
 -- returns in score order -- 
 
+termScoreCursor term coll = find (select ["term" =: term] coll) {project = ["_id" =: 0], sort = ["score" =: (-1)]}  
+
 findManual :: UString -> Action IO [Tag]
 findManual term = do
-    tagDocs <- find (select ["term" =: term] "raw") {project = ["_id" =: 0], sort = ["score" =: (-1)]} >>= rest
-    let tags = map tagFromDocument tagDocs
-    return tags
+    tagDocs <- termScoreCursor term "raw" >>= rest
+    return $ map tagFromDocument tagDocs
     
 
 
+-- Source Weighted Terms --
+scoreTag :: Tag -> Tag
+scoreTag tag = setTagScore ((score tag) + sourceScore (source tag)) tag
+    where sourceScore "wikipedia" = 100
+          sourceScore "theinsider" = 200
+          sourceScore "aol" = 50
+          sourceScore _ = 0
 
 
+findSourceWeighted :: UString -> Action IO [Tag]
+findSourceWeighted term = do
+    tagDocs <- termScoreCursor term "sourceWeighted" >>= rest
+    return $ map tagFromDocument tagDocs
 
 
 
@@ -88,13 +112,12 @@ populateMockData :: Action IO ()
 populateMockData = do
 
     delete $ select [] "raw"
-    insertMany_ "raw" $ map tagToDocument mockGaga
+    insertMany_ "raw" $ map tagToDocument manualGaga
     
-    -- delete $ select [] "manualTerms"
-    -- insertMany_ "manualTerms" $ map termToDocument mockSearchTerms
+    delete $ select [] "sourceWeighted"
+    insertMany_ "sourceWeighted" $ map tagToDocument $ map scoreTag manualGaga
 
     return ()
-
 
 -- main :: IO ()
 -- main = do
@@ -102,8 +125,8 @@ populateMockData = do
 --     result <- runTags pipe populateMockData
 --     print result
 -- 
---     result <- runTags pipe $ findManual "lady gaga"
---     print result
+--     -- result <- runTags pipe $ findManual "lady gaga"
+--     -- print result
 -- 
 --     return ()
 
@@ -111,7 +134,7 @@ populateMockData = do
 
 
 -- MOCK LADY GAGA DATA --
-mockGaga = [ Tag "wikipedia" "Lady Gaga" "http://en.wikipedia.org/wiki/Lady_gaga" "lady gaga" 200
+manualGaga = [ Tag "wikipedia" "Lady Gaga" "http://en.wikipedia.org/wiki/Lady_gaga" "lady gaga" 200
            , Tag "wikipedia" "Lady Gaga Presents the Monster Ball Tour" "http://en.wikipedia.org/wiki/Lady_Gaga_Presents_the_Monster_Ball_Tour:_At_Madison_Square_Garden" "lady gaga" 100
            , Tag "wikipedia" "Lady Gaga discography" "http://en.wikipedia.org/wiki/Lady_Gaga_discography" "lady gaga" 150
            , Tag "wikipedia" "Lady Gaga Queen of Pop" "http://en.wikipedia.org/wiki/Lady_Gaga:_Queen_of_Pop" "lady gaga" 100

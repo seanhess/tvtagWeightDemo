@@ -83,6 +83,15 @@ docContext source = mkStrContext ctx
 
 plusToSpace c = if (c == '+') then ' ' else c 
 
+
+tagsContext tags = MuList $ map tagContext tags 
+    where tagContext tag = mkStrContext tagCtx
+            where tagCtx "title" = MuVariable $ Tags.title tag
+                  tagCtx "url"   = MuVariable $ Tags.url tag
+                  tagCtx "source" = MuVariable $ Tags.source tag
+                  tagCtx "score" = MuVariable $ Tags.score tag
+                  tagCtx "term" = MuVariable $ Tags.term tag 
+
 -- renderTagsJson result = do
 --     let Right tags = result
 --     json tags
@@ -121,20 +130,24 @@ main = do
 
         get "/manual/:term" - do
             caps <- captures
-            let term = (lookup "term" ^ fromMaybe "nobody") caps
+            let term = (lookup "term" ^ fromMaybe "") caps
             let cleanTerm = B.map plusToSpace term
             Right tags <- liftIO $ runTags pipe $ findManual $ bsToCs cleanTerm
             
-            let context "tags" = MuList $ map tagContext tags 
-                tagContext tag = mkStrContext tagCtx
-                    where tagCtx "title" = MuVariable $ Tags.title tag
-                          tagCtx "url"   = MuVariable $ Tags.url tag
-                          tagCtx "source" = MuVariable $ Tags.source tag
-                          tagCtx "score" = MuVariable $ Tags.score tag
-                          tagCtx "term" = MuVariable $ Tags.term tag
+            let context "tags" = tagsContext tags
         
             res <- hastacheStr defaultConfig (encodeStr tagsView) (mkStrContext context) 
             sendHtml $ l2b res
+
+        get "/sourceWeighted/:term" - do
+            caps <- captures
+            let term = (lookup "term" ^ fromMaybe "") caps
+            let cleanTerm = B.map plusToSpace term
+            Right tags <- liftIO $ runTags pipe $ findSourceWeighted $ bsToCs cleanTerm
+            let context "tags" = tagsContext tags
+            res <- hastacheStr defaultConfig (encodeStr tagsView) (mkStrContext context) 
+            sendHtml $ l2b res
+
 
         -- params are ? params
         get "/bench" - do
@@ -165,6 +178,10 @@ main = do
         
         -- html output
         get "/html"     (sendHtml "<html><body><p>miku power!</p></body></html>")
+
+        get "/slow" - do
+            liftIO $ sleep 5
+            text "Done"
         
         get "/" - do
           update - set_status 203

@@ -32,7 +32,7 @@ THE REAL STEPS
 
 
 LEFTOVERS
-[ ] I want to see the score of manual sorting --- Just change tags to have a score and term.. 
+[√] I want to see the score of manual sorting --- Just change tags to have a score and term.. 
     -- then add them per a process you can tweakify
     -- it doesn't hurt to add them more than once
 
@@ -45,10 +45,15 @@ LEFTOVERS
     [√] Lady: should return wikipedia for Lady
     [√] Lady Gaga: should return results better
 
-[ ] API 3: Source weighting. Figure out how to favor Aol over Wikipedia, in spite of its score
-    [ ] whichever one doesn't come up first, make that one come up first. 
-    [ ] term score, source score. 
-    [ ] Automatically add it. get a systam going
+[√] API 3: Source weighting. Figure out how to favor Aol over Wikipedia, in spite of its score
+    [√] whichever one doesn't come up first, make that one come up first. 
+    [√] term score, source score. 
+    [√] Automatically add it. get a systam going
+
+    [ ] Good way to weight it mathematically. 
+        - need better term scores
+        - then don't let them take over. Right now it's too much
+        - Naw, I need REAL term scores
 
 [ ] API 4: Breifs: Add a "Brief" in there, and give it maximum score
 
