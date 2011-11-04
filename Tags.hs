@@ -83,9 +83,9 @@ findManual term = do
 scoreTag :: Tag -> Tag
 scoreTag tag = setTagScore ((score tag) + sourceScore (source tag)) tag
     where sourceScore "wikipedia" = 100
-          sourceScore "theinsider" = 200
+          sourceScore "theinsider" = 250
           sourceScore "aol" = 50
-          sourceScore "breif" = 300
+          sourceScore "brief" = 300
           sourceScore _ = 0
 
 
@@ -156,7 +156,7 @@ manualGaga = [ Tag "wikipedia" "Lady Gaga" "http://en.wikipedia.org/wiki/Lady_ga
 
            , Tag "wikipedia" "Lady" "http://en.wikipedia.org/wiki/Lady" "lady" 200
 
-           , Tag "breif" "Lady Gaga" "http://tvtag.i.tv/breifs/LadyGaga" "lady gaga" 200
+           , Tag "brief" "Lady Gaga" "http://tvtag.i.tv/briefs/LadyGaga" "lady gaga" 200
            ]
 
 
