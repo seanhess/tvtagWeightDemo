@@ -12,11 +12,13 @@ import qualified Data.Aeson
 
 import qualified Data.CompactString as CS
 
-import Data.List (elemIndex, sortBy, init)
+import Data.List (elemIndex, sortBy, init, nub)
 import qualified Data.List as List
 
 import Data.Char (toLower)
 import Data.Ratio 
+
+import NLP.Stemmer 
 
 -- Tag --
 data Tag = Tag {
@@ -24,39 +26,43 @@ data Tag = Tag {
     title :: String,
     url :: String,
     term :: String,
-    score :: Int
+    score :: Int,
+    terms :: [String]
 } deriving (Eq, Show, Read)
 
 instance ToJSON Tag where
-    toJSON (Tag source title url term score) = object ["source" .= source, "title" .= title, "url" .= url, "score" .= score, "term" .= term]
+    toJSON (Tag source title url term score terms) = object ["source" .= source, "title" .= title, "url" .= url, "score" .= score, "term" .= term, "terms" .= terms]
 
 instance Ord Tag where
     compare x y = compare (score x) (score y)
 
 tagToDocument :: Tag -> Document
-tagToDocument (Tag source title url term score) = ["_id" =: (term ++ url), "source" =: source, "title" =: title, "url" =: url, "score" =: score, "term" =: term]
+tagToDocument (Tag source title url term score terms) = ["_id" =: (term ++ "-" ++ url), "source" =: source, "title" =: title, "url" =: url, "score" =: score, "term" =: term, "terms" =: terms]
 
 tagFromDocument :: Document -> Tag
-tagFromDocument fs = Tag source title url term score
+tagFromDocument fs = Tag source title url term score terms
     where source = sval "source" fs
           title = sval "title" fs
           url = sval "url" fs
           term = sval "term" fs
           score = ival $ valueAt "score" fs
+          terms = aval $ valueAt "terms" fs
           sval field doc = stringValue $ valueAt field doc
+          aval (Array vs) = map stringValue vs
+          aval _ = []
           ival (Int32 i) = fromIntegral i
           ival _ = 0
 
 
 setTagTermScore :: String -> Int -> Tag -> Tag
-setTagTermScore term score tag = Tag (source tag) (title tag) (url tag) (normalizeTerm term) score
+setTagTermScore term score tag = Tag (source tag) (title tag) (url tag) (normalizeTerm term) score (terms tag)
 
 setTagScore :: Int -> Tag -> Tag
-setTagScore score tag = Tag (source tag) (title tag) (url tag) (term tag) score
+setTagScore score tag = Tag (source tag) (title tag) (url tag) (term tag) score (terms tag)
 
 -- doesn't have a term or score
 simpleTag :: String -> String -> String -> Tag
-simpleTag source title url = Tag source title url "" 0
+simpleTag source title url = Tag source title url "" 0 []
 
 
 
@@ -154,12 +160,97 @@ lazyFindTermScored :: String -> Action IO [Tag]
 lazyFindTermScored term = do
     tags <- generateScoresForTerm term -- I could save them, but that's just an optimization
     return tags
+
+
     
 
 findFullyScored :: String -> Action IO [Tag]
 findFullyScored term = do
     tags <- generateScoresForTerm term
     return $ reverse $ List.sort $ map sourceScoreTag tags
+
+
+
+
+
+-- Multiple Keyword Docs --
+-- splitEachKeyword :: Tag -> [Tag]
+-- splitEachKeyword tag = map getTag $ nub.words $ title tag
+--     where getTag word = Tag (source tag) (title tag) (url tag) (normalizeTerm word) 0 
+-- 
+-- 
+-- ownTermScoreTag tag = termScoreTag (term tag) tag
+-- 
+-- populateMultiple :: Action IO ()
+-- populateMultiple = do
+--     delete $ select [] "multiple"
+--     let tags = concat $ map splitEachKeyword manualGaga
+--     insertMany_ "multiple" $ map (tagToDocument.ownTermScoreTag) tags
+--     return ()
+-- 
+-- I think this is too hard
+-- findMultiple :: String -> Action IO [Tag]
+-- findMultiple term = do
+    -- let terms = words term
+    -- find (select ["term" =: "i"] "raw")  {project = ["_id" =: 0], sort = ["score" =: (-1)]}  
+    -- wait, is this even possible? 
+    -- lady 50
+    -- gaga 50
+    -- the score definitely doesn't matter
+    -- well, I want the cross-section of terms. Things that have the same url, but different terms. 
+    -- that kind of query is hard in mongo. Try the other way
+
+
+
+
+
+
+-- Multiple Keyword Array --
+
+
+keywords :: String -> [String]
+keywords title = map normalizeTerm $ stemWords English $ words title
+-- keywords title = map normalizeTerm $ words title
+
+keywordify :: Tag -> Tag
+keywordify (Tag source title url term score terms) = Tag source title url term score (keywords title)    
+    
+populateMultiple :: Action IO ()
+populateMultiple = do
+    delete $ select [] "multiple"
+    let tags = map keywordify manualGaga
+    insertMany_ "multiple" $ map tagToDocument tags
+    return ()
+
+
+findMultiple :: String -> Action IO [Tag]
+findMultiple term = do
+    let terms = keywords term
+    let cursor = find (select ["terms" =: ["$all" =: terms]] "multiple")  {project = ["_id" =: 0]}  
+    tagDocs <- cursor >>= rest
+    liftIO $ print $ tagDocs
+    return $ reverse $ List.sort $ map (sourceScoreTag.(scoreTagByTerms term).tagFromDocument) tagDocs
+
+scoreTagByTerms :: String -> Tag -> Tag
+scoreTagByTerms term tag = setTagTermScore term termScore tag
+    where termScore = round $ maxScore / distanceToTerm
+          distanceToTerm = tagNumWords % termNumWords -- ignores if has fewer words, but we shouldn't get those
+          maxScore = 100
+          numWords text = (length.words) text
+          termNumWords = max 1 $ length $ keywords term 
+          tagNumWords = max 1 $ length (terms tag)
+    
+    
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -195,13 +286,17 @@ populateMockData = do
     insertMany_ "sourceWeighted" $ map (tagToDocument . sourceScoreTag) manualGaga
 
     delete $ select [] "termScored"
-    -- insertMany_ "termScored" $ map (tagToDocument . termScoreTag "Lady Gaga") $ init manualGaga -- manually filter out the last item, "Lady"
 
     lgtags <- generateScoresForTerm "Lady Gaga"
     ltags <- generateScoresForTerm "Lady"
 
     insertMany_ "termScored" $ map tagToDocument lgtags
     insertMany_ "termScored" $ map tagToDocument ltags
+
+    populateMultiple
+
+    -- res <- findMultiple "gaga lady"
+    -- liftIO $ print res
     
     -- results <- findTermScored "Lady Gaga"
     -- liftIO $ print results
@@ -227,27 +322,27 @@ amain = do
 
 -- MOCK LADY GAGA DATA --
 -- manual term scores, based on how many words it has. Exact = 200, +1 = 150, mid = 100, low = 50
-manualGaga = [ Tag "wikipedia" "Lady Gaga" "http://en.wikipedia.org/wiki/Lady_gaga" "lady gaga" 200
-           , Tag "wikipedia" "Lady Gaga Presents the Monster Ball Tour" "http://en.wikipedia.org/wiki/Lady_Gaga_Presents_the_Monster_Ball_Tour:_At_Madison_Square_Garden" "lady gaga" 100
-           , Tag "wikipedia" "Lady Gaga discography" "http://en.wikipedia.org/wiki/Lady_Gaga_discography" "lady gaga" 150
-           , Tag "wikipedia" "Lady Gaga Queen of Pop" "http://en.wikipedia.org/wiki/Lady_Gaga:_Queen_of_Pop" "lady gaga" 100
-           , Tag "wikipedia" "Lady Gaga World Tour 2010" "http://en.wikipedia.org/wiki/Lady_Gaga_World_Tour_2010" "lady gaga" 100
-           , Tag "wikipedia" "Lady Gaga the fame monster" "http://en.wikipedia.org/wiki/Lady_Gaga_the_fame_monster" "lady gaga" 100
-           , Tag "wikipedia" "Lady Gaga Telephone" "http://en.wikipedia.org/wiki/Lady_Gaga_Telephone" "lady gaga" 100
-           , Tag "wikipedia" "Lady Gaga x Terry Richardson" "http://en.wikipedia.org/wiki/Lady_Gaga_x_Terry_Richardson" "lady gaga" 100
-           , Tag "wikipedia" "Lady Gaga Revenge" "http://en.wikipedia.org/wiki/Lady_Gaga_Revenge#Lady_Gaga_Revenge" "lady gaga" 150
-           , Tag "wikipedia" "Lady gaga You and I" "http://en.wikipedia.org/wiki/Lady_gaga_you_and_i" "lady gaga" 100
+manualGaga = [ Tag "wikipedia" "Lady Gaga" "http://en.wikipedia.org/wiki/Lady_gaga" "lady gaga" 200 []
+           , Tag "wikipedia" "Lady Gaga Presents the Monster Ball Tour" "http://en.wikipedia.org/wiki/Lady_Gaga_Presents_the_Monster_Ball_Tour:_At_Madison_Square_Garden" "lady gaga" 100 []
+           , Tag "wikipedia" "Lady Gaga discography" "http://en.wikipedia.org/wiki/Lady_Gaga_discography" "lady gaga" 150 []
+           , Tag "wikipedia" "Lady Gaga Queen of Pop" "http://en.wikipedia.org/wiki/Lady_Gaga:_Queen_of_Pop" "lady gaga" 100 []
+           , Tag "wikipedia" "Lady Gaga World Tour 2010" "http://en.wikipedia.org/wiki/Lady_Gaga_World_Tour_2010" "lady gaga" 100 []
+           , Tag "wikipedia" "Lady Gaga the fame monster" "http://en.wikipedia.org/wiki/Lady_Gaga_the_fame_monster" "lady gaga" 100 []
+           , Tag "wikipedia" "Lady Gaga Telephone" "http://en.wikipedia.org/wiki/Lady_Gaga_Telephone" "lady gaga" 100 []
+           , Tag "wikipedia" "Lady Gaga x Terry Richardson" "http://en.wikipedia.org/wiki/Lady_Gaga_x_Terry_Richardson" "lady gaga" 100 []
+           , Tag "wikipedia" "Lady Gaga Revenge" "http://en.wikipedia.org/wiki/Lady_Gaga_Revenge#Lady_Gaga_Revenge" "lady gaga" 150 []
+           , Tag "wikipedia" "Lady gaga You and I" "http://en.wikipedia.org/wiki/Lady_gaga_you_and_i" "lady gaga" 100 []
 
-           , Tag "theinsider" "Lady Gaga's 'Bad Romance' Enters All-Time 100" "http://www.theinsider.com/music/45833_Bad_Romance_Named_All_Time_100_Songs/index.html" "lady gaga" 50
+           , Tag "theinsider" "Lady Gaga's 'Bad Romance' Enters All-Time 100" "http://www.theinsider.com/music/45833_Bad_Romance_Named_All_Time_100_Songs/index.html" "lady gaga" 50 []
 
-           , Tag "aoltv" "Jerry Springer Dresses Up as Lady Gaga for Halloween (VIDEO)" "http://www.aoltv.com/2011/10/31/jerry-springer-lady-gaga-halloween-video/" "lady gaga" 50
-           , Tag "aoltv" "Lady Gaga Talks About Madonna as Inspiration on 'Gaga by Gaultier' (VIDEO)" "http://www.aoltv.com/2011/09/13/lady-gaga-madonna-inspiration-gaga-by-gaultier-video/" "lady gaga" 50
-           , Tag "aoltv" "Lady Gaga, Britney Spears, Beyonce and Cloris Leachman Highlight the 2011 VMAs (VIDEO)" "http://www.aoltv.com/2011/08/29/women-win-big-vmas-highlights-list-of-winners-video/" "lady gaga" 50
-           , Tag "aoltv" "Lady Gaga Lends Voice to 'The Simpsons,' Andre Braugher Heading to 'SVU' and More Casting News" "http://www.aoltv.com/2011/08/23/lady-gaga-the-simpsons/" "lady gaga" 50
+           , Tag "aoltv" "Jerry Springer Dresses Up as Lady Gaga for Halloween (VIDEO)" "http://www.aoltv.com/2011/10/31/jerry-springer-lady-gaga-halloween-video/" "lady gaga" 50 []
+           , Tag "aoltv" "Lady Gaga Talks About Madonna as Inspiration on 'Gaga by Gaultier' (VIDEO)" "http://www.aoltv.com/2011/09/13/lady-gaga-madonna-inspiration-gaga-by-gaultier-video/" "lady gaga" 50 []
+           , Tag "aoltv" "Lady Gaga, Britney Spears, Beyonce and Cloris Leachman Highlight the 2011 VMAs (VIDEO)" "http://www.aoltv.com/2011/08/29/women-win-big-vmas-highlights-list-of-winners-video/" "lady gaga" 50 []
+           , Tag "aoltv" "Lady Gaga Lends Voice to 'The Simpsons,' Andre Braugher Heading to 'SVU' and More Casting News" "http://www.aoltv.com/2011/08/23/lady-gaga-the-simpsons/" "lady gaga" 50 []
 
-           , Tag "brief" "Lady Gaga" "http://tvtag.i.tv/briefs/LadyGaga" "lady gaga" 200
+           , Tag "brief" "Lady Gaga" "http://tvtag.i.tv/briefs/LadyGaga" "lady gaga" 200 []
 
-           , Tag "wikipedia" "Lady" "http://en.wikipedia.org/wiki/Lady" "lady" 200
+           , Tag "wikipedia" "Lady" "http://en.wikipedia.org/wiki/Lady" "lady" 200 []
            ]
 
 

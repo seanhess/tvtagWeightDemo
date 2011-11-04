@@ -46,7 +46,6 @@ RESEARCH
 
 
 
-
 [√] API 2: Manually add a search term and a score to each document
     [√] Think about which results are strongest for a given search term
     [√] Make it return those with the strongest first
@@ -71,16 +70,22 @@ RESEARCH
     [√] Term Score them client-side, after getting a match at all
     [√] Lazily extract them from docs that match at all. Term Query -> Get Docs -> Score Docs -> Re-run query
     [√] Add source weighting as well
-    [ ] Try assigning a score to each word individually, and combine them somehow
+    [x] Client-side won't hit the index with that regex
 
-[ ] API 6: Consider all search terms to be a single document. Just return the document of results. 
-    [ ] You'd have to take the result of a search and combine it no?
+[ ] API: Multiple Terms
+    [ ] Multiple entries, with single-word terms
+    [ ] Multiple keywords in an array -- score them afterwards. Can you match both?
 
 [ ] API 7: Create full text search by:
     [ ] Stemming the tags, recording all keywords
     [ ] Stemming the queries, and making sure the doc has all the stems
 
 [ ] Real Data Sources - try parsing Aol / CBS. Can it be done quickly, perhaps?
+
+OTHER IDEAS
+[ ] Feedback loop - allow API calls (liked this) to increase the score of the different sources? 
+[ ] Consider all search terms to be a single document. Just return the document of results. 
+    [ ] You'd have to take the result of a search and combine it no?
 
 
 

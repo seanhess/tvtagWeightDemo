@@ -164,6 +164,11 @@ main = do
             res <- renderTagsView tags
             sendHtml $ res
 
+        get "/multiple/:term" - do
+            caps <- captures
+            Right tags <- liftIO $ runTags pipe $ findMultiple $ B.unpack (param "term" caps)
+            res <- renderTagsView tags
+            sendHtml $ res
 
         -- params are ? params
         get "/bench" - do
