@@ -70,7 +70,6 @@ instance ToJSON Thang where
 
 
 
-
 -- Converting Documents to HTML Templating --
 valueToMu :: Value -> MuType m
 valueToMu (Data.Bson.String v) = MuVariable $ Data.Bson.unpack v
@@ -81,9 +80,9 @@ docContext source = mkStrContext ctx
     where ctx name = valueToMu (Data.Bson.valueAt (CS.pack name) source) 
 
 
-renderTagsJson result = do
-    let Right tags = result
-    json tags
+-- renderTagsJson result = do
+--     let Right tags = result
+--     json tags
 
 
 main :: IO ()
@@ -105,19 +104,30 @@ main = do
         middleware - simple_access_logger Nothing
 
         get "/tags.json" - do
-            result <- runTags pipe $ rawFind "Lady Gaga"  -- without liftIO, I die
-            renderTagsJson result
-
+            Right result <- liftIO $ runTags pipe $ rawFind "Lady Gaga"  -- without liftIO, I die
+            json result
+        
         get "/tags.html" - do
-            result <- runTags pipe $ rawFind "Lady Gaga"
+            result <- liftIO $ runTags pipe $ rawFind "Lady Gaga"
             let Right tags = result
-    
+            
             let ctx "name" = MuVariable "Woot"
                 context "length" =  MuVariable $ length tags
                 context "tags" = MuList $ map docContext tags 
-
+        
             res <- hastacheStr defaultConfig (encodeStr tagsView) (mkStrContext context) 
             sendHtml $ l2b res
+
+        -- get "/manual.html" - do
+        --     result <- runTags pipe $ findManual "lady gaga"
+        --     let Right tags = result
+        --     
+        --     let ctx "name" = MuVariable "Woot"
+        --         context "length" =  MuVariable $ length tags
+        --         context "tags" = MuList $ map docContext tags 
+        -- 
+        --     res <- hastacheStr defaultConfig (encodeStr tagsView) (mkStrContext context) 
+        --     sendHtml $ l2b res
 
         -- params are ? params
         get "/bench" - do

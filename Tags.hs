@@ -79,32 +79,35 @@ findManual term = do
 
 -- Helpers --
 
-runTagsInner :: (MonadIO m) => Pipe -> Action m a -> m (Either Failure a)
-runTagsInner pipe actions = do
+runTags :: (MonadIO m) => Pipe -> Action m a -> m (Either Failure a)
+runTags pipe actions = do
     e <- access pipe master "testtags" actions
     return e
 
-runTags :: MonadIO m => Pipe -> Action IO a -> m (Either Failure a)
-runTags pipe actions = liftIO $ runTags pipe actions
+-- liftIO makes it spin forever here, but not if you put in the context you're using it in
+-- runTags :: MonadIO m => Pipe -> Action IO a -> m (Either Failure a)
+-- runTags pipe actions = liftIO $ runTags pipe actions
 
 connectTagsDb = runIOE $ connect (host "127.0.0.1")
 
 populateMockData :: Action IO ()
 populateMockData = do
-    let gagaDocs = map tagToDocument mockGaga
-    rawInsert gagaDocs
+
+    delete $ select [] "raw"
+    insertMany_ "raw" $ map tagToDocument mockGaga
     
     delete $ select [] "manualTerms"
     insertMany_ "manualTerms" $ map termToDocument mockSearchTerms
+
     return ()
 
     
 -- main :: IO ()
 -- main = do
 --     pipe <- connectTagsDb
---     runTags pipe populateMockData   
---     tags <- runTags pipe (rawFind "Lady Gaga")
---     print tags
+--     result <- runTags pipe populateMockData
+--     print result
+--     -- runTags pipe populateMockData   
 --     return ()
 
 
