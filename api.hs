@@ -30,6 +30,7 @@ import qualified Data.CompactString as CS
 import qualified Data.Bson
 
 import Tags
+import qualified Tags
 import MongoExt
 
 import Text.Hastache
@@ -79,7 +80,6 @@ docContext :: (Monad m) => Document -> MuContext m
 docContext source = mkStrContext ctx
     where ctx name = valueToMu (Data.Bson.valueAt (CS.pack name) source) 
 
-
 -- renderTagsJson result = do
 --     let Right tags = result
 --     json tags
@@ -111,23 +111,22 @@ main = do
             result <- liftIO $ runTags pipe $ rawFind "Lady Gaga"
             let Right tags = result
             
-            let ctx "name" = MuVariable "Woot"
-                context "length" =  MuVariable $ length tags
-                context "tags" = MuList $ map docContext tags 
+            let context "tags" = MuList $ map docContext tags 
         
             res <- hastacheStr defaultConfig (encodeStr tagsView) (mkStrContext context) 
             sendHtml $ l2b res
 
-        -- get "/manual.html" - do
-        --     result <- runTags pipe $ findManual "lady gaga"
-        --     let Right tags = result
-        --     
-        --     let ctx "name" = MuVariable "Woot"
-        --         context "length" =  MuVariable $ length tags
-        --         context "tags" = MuList $ map docContext tags 
-        -- 
-        --     res <- hastacheStr defaultConfig (encodeStr tagsView) (mkStrContext context) 
-        --     sendHtml $ l2b res
+        get "/manual.html" - do
+            Right tags <- liftIO $ runTags pipe $ findManual "lady gaga"
+            
+            let context "tags" = MuList $ map tagContext tags 
+                tagContext tag = mkStrContext tagCtx
+                    where tagCtx "title" = MuVariable $ Tags.title tag
+                          tagCtx "url"   = MuVariable $ Tags.url tag
+                          tagCtx "source" = MuVariable $ Tags.source tag
+        
+            res <- hastacheStr defaultConfig (encodeStr tagsView) (mkStrContext context) 
+            sendHtml $ l2b res
 
         -- params are ? params
         get "/bench" - do

@@ -10,6 +10,8 @@ import Control.Monad.IO.Class
 import Data.Aeson (ToJSON(..), encode, (.=), object)
 import qualified Data.Aeson
 
+import Data.List (elemIndex, sortBy)
+
 -- Tag --
 data Tag = Tag {
     source :: String,
@@ -41,6 +43,12 @@ data SearchTerm = SearchTerm {
 termToDocument :: SearchTerm -> Document
 termToDocument (SearchTerm term score url) = ["term" =: term, "score" =: score, "url" =: url]
 
+termFromDocument :: Document -> SearchTerm
+termFromDocument fs = SearchTerm term score url
+    where term = stringValue $ valueAt "term" fs
+          score = 10
+          url = stringValue $ valueAt "url" fs
+
 instance ToJSON SearchTerm where
     toJSON (SearchTerm term score url) = object ["term" .= term, "score" .= score, "url" .= url]
 
@@ -64,11 +72,17 @@ rawInsert tags = do
 
 
 -- Manual Search Terms --
--- [ ] Add sort
-findManual :: UString -> Action IO [Document]
+-- returns in score order -- 
+
+findManual :: UString -> Action IO [Tag]
 findManual term = do
-    docs <- find (select ["term" =: term] "manualTerms") >>= rest
-    find (select ["url" =: "http://en.wikipedia.org/wiki/Lady_gaga"] "manualTerms") >>= rest
+    termDocs <- find (select ["term" =: term] "manualTerms") {project = ["url" =: 1, "_id" =: 0], sort = ["score" =: (-1)]} >>= rest
+    let terms = map termFromDocument termDocs
+    let urls = map searchUrl terms
+    tagDocs <- find (select ["url" =: ["$in" =: urls]] "raw") >>= rest
+    let tags = map tagFromDocument tagDocs
+    let urlOrder a b = compare (elemIndex (url a) urls) (elemIndex (url b) urls)
+    return $ sortBy urlOrder tags
     
 
 
@@ -101,11 +115,14 @@ populateMockData = do
 
     return ()
 
-    
+
 -- main :: IO ()
 -- main = do
 --     pipe <- connectTagsDb
 --     result <- runTags pipe populateMockData
+--     print result
+-- 
+--     result <- runTags pipe $ findManual "lady gaga"
 --     print result
 --     -- runTags pipe populateMockData   
 --     return ()
