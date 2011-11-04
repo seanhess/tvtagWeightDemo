@@ -38,6 +38,15 @@ LEFTOVERS
 
 [√] Enhancement: Make a Tag type and serialize that instead
 
+
+RESEARCH
+[√] Easy to do a two-step query, if we need to
+[ ] Can we have terms: ["a","b","c"] and find all docs that have both a AND c?
+
+
+
+
+
 [√] API 2: Manually add a search term and a score to each document
     [√] Think about which results are strongest for a given search term
     [√] Make it return those with the strongest first
@@ -55,9 +64,35 @@ LEFTOVERS
         - then don't let them take over. Right now it's too much
         - Naw, I need REAL term scores
 
-[ ] API 4: Breifs: Add a "Brief" in there, and give it maximum score
+[√] API 4: Breifs: Add a "Brief" in there, and give it maximum score
 
-[ ] API 5: Extract Search Terms + Assign Score
+[ ] API 5: Term scores!
+    [√] Manually term score on input
+    [√] Term Score them client-side, after getting a match at all
+    [ ] Lazily extract them from docs that match at all. Term Query -> Get Docs -> Score Docs -> Re-run query
+    [ ] Try assigning a score to each word individually, and combine them somehow
+    [ ] Add source weighting as well
+
+[ ] API 6: Consider all search terms to be a single document. Just return the document of results. 
+    [ ] You'd have to take the result of a search and combine it no?
+
+[ ] API 7: Create full text search by:
+    [ ] Stemming the tags, recording all keywords
+    [ ] Stemming the queries, and making sure the doc has all the stems
+
+[ ] Real Data Sources - try parsing Aol / CBS. Can it be done quickly, perhaps?
+
+
+
+
+
+
+
+
+
+
+
+KEYWORD IDEAS
     [ ] Have them show up for different key word searches
 
     [ ] How are you going to do this at all?
@@ -82,9 +117,3 @@ LEFTOVERS
 
     [ ] Use full-text search (can I manipulate the results?) There are sphinx packages
     
-[ ] API 6: Consider all search terms to be a single document. Just return the document of results. 
-
-[ ] API 7: Create full text search by:
-    [ ] Stemming the tags, recording all keywords
-    [ ] Stemming the queries, and making sure the doc has all the stems
-

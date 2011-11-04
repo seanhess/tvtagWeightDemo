@@ -147,6 +147,16 @@ main = do
             let context "tags" = tagsContext tags
             res <- hastacheStr defaultConfig (encodeStr tagsView) (mkStrContext context) 
             sendHtml $ l2b res
+            
+
+        get "/termScored/:term" - do
+            caps <- captures
+            let term = (lookup "term" ^ fromMaybe "") caps
+            let cleanTerm = B.map plusToSpace term
+            Right tags <- liftIO $ runTags pipe $ lazyFindTermScored $ B.unpack cleanTerm
+            let context "tags" = tagsContext tags
+            res <- hastacheStr defaultConfig (encodeStr tagsView) (mkStrContext context) 
+            sendHtml $ l2b res        
 
 
         -- params are ? params

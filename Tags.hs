@@ -10,7 +10,13 @@ import Control.Monad.IO.Class
 import Data.Aeson (ToJSON(..), encode, (.=), object)
 import qualified Data.Aeson
 
-import Data.List (elemIndex, sortBy)
+import qualified Data.CompactString as CS
+
+import Data.List (elemIndex, sortBy, init)
+import qualified Data.List as List
+
+import Data.Char (toLower)
+import Data.Ratio ((%))
 
 -- Tag --
 data Tag = Tag {
@@ -24,8 +30,11 @@ data Tag = Tag {
 instance ToJSON Tag where
     toJSON (Tag source title url term score) = object ["source" .= source, "title" .= title, "url" .= url, "score" .= score, "term" .= term]
 
+instance Ord Tag where
+    compare x y = compare (score x) (score y)
+
 tagToDocument :: Tag -> Document
-tagToDocument (Tag source title url term score) = ["_id" =: url, "source" =: source, "title" =: title, "url" =: url, "score" =: score, "term" =: term]
+tagToDocument (Tag source title url term score) = ["_id" =: (term ++ url), "source" =: source, "title" =: title, "url" =: url, "score" =: score, "term" =: term]
 
 tagFromDocument :: Document -> Tag
 tagFromDocument fs = Tag source title url term score
@@ -40,7 +49,7 @@ tagFromDocument fs = Tag source title url term score
 
 
 setTagTermScore :: String -> Int -> Tag -> Tag
-setTagTermScore term score tag = Tag (source tag) (title tag) (url tag) term score
+setTagTermScore term score tag = Tag (source tag) (title tag) (url tag) (normalizeTerm term) score
 
 setTagScore :: Int -> Tag -> Tag
 setTagScore score tag = Tag (source tag) (title tag) (url tag) (term tag) score
@@ -67,6 +76,12 @@ rawInsert tags = do
     insertMany "raw" tags
 
 
+
+
+
+
+
+
 -- Manual Search Terms --
 -- returns in score order -- 
 
@@ -80,19 +95,66 @@ findManual term = do
 
 
 -- Source Weighted Terms --
-scoreTag :: Tag -> Tag
-scoreTag tag = setTagScore ((score tag) + sourceScore (source tag)) tag
+sourceScoreTag :: Tag -> Tag
+sourceScoreTag tag = setTagScore ((score tag) + sourceScore (source tag)) tag
     where sourceScore "wikipedia" = 100
           sourceScore "theinsider" = 250
           sourceScore "aol" = 50
           sourceScore "brief" = 300
           sourceScore _ = 0
 
-
 findSourceWeighted :: UString -> Action IO [Tag]
 findSourceWeighted term = do
     tagDocs <- termScoreCursor term "sourceWeighted" >>= rest
     return $ map tagFromDocument tagDocs
+
+
+
+
+
+
+
+-- Score Lazily --
+
+normalizeTerm :: String -> String
+normalizeTerm term = map toLower term
+
+termScoreTag :: String -> Tag -> Tag
+termScoreTag term tag = setTagTermScore term termScore tag
+    where termScore = round $ maxScore / distanceToTerm
+          distanceToTerm = tagNumWords % termNumWords -- ignores if has fewer words, but we shouldn't get those
+          maxScore = 100
+          numWords text = (length.words) text
+          termNumWords = numWords term
+          tagNumWords = numWords (title tag)
+
+-- Finds term scores only, without source weighted applied. 
+-- imported manually for lady gaga
+findTermScored :: String -> Action IO [Tag]
+findTermScored term = do
+    tagDocs <- termScoreCursor (normalizeTerm term) "termScored" >>= rest
+    return $ map tagFromDocument tagDocs 
+
+-- Finds any title matching the term, then scores it
+generateScoresForTerm :: String -> Action IO [Tag]
+generateScoresForTerm term = do
+    let cursor = find (select ["title" =: Regex (CS.pack (normalizeTerm term)) "i"] "raw")  {project = ["_id" =: 0], sort = ["score" =: (-1)]}  
+    tagDocs <- cursor >>= rest
+    let tags = reverse $ List.sort $ map ((termScoreTag term).tagFromDocument) tagDocs 
+    return tags
+
+lazyFindTermScored :: String -> Action IO [Tag]
+lazyFindTermScored term = do
+    tags <- generateScoresForTerm term -- I could save them, but that's just an optimization
+    return tags
+    
+
+
+
+
+
+
+
 
 
 
@@ -116,20 +178,35 @@ populateMockData = do
     insertMany_ "raw" $ map tagToDocument manualGaga
     
     delete $ select [] "sourceWeighted"
-    insertMany_ "sourceWeighted" $ map tagToDocument $ map scoreTag manualGaga
+    insertMany_ "sourceWeighted" $ map (tagToDocument . sourceScoreTag) manualGaga
+
+    delete $ select [] "termScored"
+    -- insertMany_ "termScored" $ map (tagToDocument . termScoreTag "Lady Gaga") $ init manualGaga -- manually filter out the last item, "Lady"
+
+    lgtags <- generateScoresForTerm "Lady Gaga"
+    ltags <- generateScoresForTerm "Lady"
+
+    insertMany_ "termScored" $ map tagToDocument lgtags
+    insertMany_ "termScored" $ map tagToDocument ltags
+    
+    results <- findTermScored "Lady Gaga"
+    liftIO $ print results
+
+    results <- findTermScored "Lady"
+    liftIO $ print results
 
     return ()
 
--- main :: IO ()
--- main = do
---     pipe <- connectTagsDb
---     result <- runTags pipe populateMockData
---     print result
--- 
---     -- result <- runTags pipe $ findManual "lady gaga"
---     -- print result
--- 
---     return ()
+amain = do
+    
+    pipe <- connectTagsDb
+    result <- runTags pipe populateMockData
+    print result
+
+    -- result <- runTags pipe $ findManual "lady gaga"
+    -- print result
+
+    return ()
 
 
 
@@ -154,9 +231,9 @@ manualGaga = [ Tag "wikipedia" "Lady Gaga" "http://en.wikipedia.org/wiki/Lady_ga
            , Tag "aoltv" "Lady Gaga, Britney Spears, Beyonce and Cloris Leachman Highlight the 2011 VMAs (VIDEO)" "http://www.aoltv.com/2011/08/29/women-win-big-vmas-highlights-list-of-winners-video/" "lady gaga" 50
            , Tag "aoltv" "Lady Gaga Lends Voice to 'The Simpsons,' Andre Braugher Heading to 'SVU' and More Casting News" "http://www.aoltv.com/2011/08/23/lady-gaga-the-simpsons/" "lady gaga" 50
 
-           , Tag "wikipedia" "Lady" "http://en.wikipedia.org/wiki/Lady" "lady" 200
-
            , Tag "brief" "Lady Gaga" "http://tvtag.i.tv/briefs/LadyGaga" "lady gaga" 200
+
+           , Tag "wikipedia" "Lady" "http://en.wikipedia.org/wiki/Lady" "lady" 200
            ]
 
 
