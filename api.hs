@@ -80,6 +80,9 @@ docContext :: (Monad m) => Document -> MuContext m
 docContext source = mkStrContext ctx
     where ctx name = valueToMu (Data.Bson.valueAt (CS.pack name) source) 
 
+
+plusToSpace c = if (c == '+') then ' ' else c 
+
 -- renderTagsJson result = do
 --     let Right tags = result
 --     json tags
@@ -119,7 +122,7 @@ main = do
         get "/manual/:term" - do
             caps <- captures
             let term = (lookup "term" ^ fromMaybe "nobody") caps
-            let cleanTerm = B.map (\c -> if (c == '+') then ' ' else c) term
+            let cleanTerm = B.map plusToSpace term
             Right tags <- liftIO $ runTags pipe $ findManual $ bsToCs cleanTerm
             
             let context "tags" = MuList $ map tagContext tags 
@@ -127,6 +130,8 @@ main = do
                     where tagCtx "title" = MuVariable $ Tags.title tag
                           tagCtx "url"   = MuVariable $ Tags.url tag
                           tagCtx "source" = MuVariable $ Tags.source tag
+                          tagCtx "score" = MuVariable $ Tags.score tag
+                          tagCtx "term" = MuVariable $ Tags.term tag
         
             res <- hastacheStr defaultConfig (encodeStr tagsView) (mkStrContext context) 
             sendHtml $ l2b res

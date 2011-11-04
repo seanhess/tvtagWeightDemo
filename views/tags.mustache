@@ -15,9 +15,9 @@
 <body>
     <h1>Tags</h1>
     <table>
-        <tr><th>Source</th><th>Title</th><th>Url</th></tr>
+        <tr><th>Score</th><th>Term</th><th>Source</th><th>Title</th><th>Url</th></tr>
         {{#tags}}
-            <tr><td>{{source}}</td><td style="width: 300;">{{title}}</td><td><a href="{{url}}" target="_blank">{{url}}</a></td></tr>
+            <tr><td>{{score}}</td><td>{{term}}</td><td>{{source}}</td><td style="width: 300;">{{title}}</td><td><a href="{{url}}" target="_blank">{{url}}</a></td></tr>
         {{/tags}}
     </table>
 </body>

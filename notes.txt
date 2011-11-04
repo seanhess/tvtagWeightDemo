@@ -32,21 +32,25 @@ THE REAL STEPS
 
 
 LEFTOVERS
-[ ] I want to see the score of manual sorting
+[ ] I want to see the score of manual sorting --- Just change tags to have a score and term.. 
+    -- then add them per a process you can tweakify
+    -- it doesn't hurt to add them more than once
+
+[√] Enhancement: Make a Tag type and serialize that instead
 
 [√] API 2: Manually add a search term and a score to each document
     [√] Think about which results are strongest for a given search term
     [√] Make it return those with the strongest first
-    [ ] Make it work for "Lady" and "Lady Gaga"
-    [ ] Lady: should return wikipedia for Lady
-    [ ] Lady Gaga: should return results better
+    [√] Make it work for "Lady" and "Lady Gaga"
+    [√] Lady: should return wikipedia for Lady
+    [√] Lady Gaga: should return results better
 
 [ ] API 3: Source weighting. Figure out how to favor Aol over Wikipedia, in spite of its score
     [ ] whichever one doesn't come up first, make that one come up first. 
+    [ ] term score, source score. 
+    [ ] Automatically add it. get a systam going
 
 [ ] API 4: Breifs: Add a "Brief" in there, and give it maximum score
-
-[ ] Enhancement: Make a Tag type and serialize that instead
 
 [ ] API 5: Extract Search Terms + Assign Score
     [ ] Have them show up for different key word searches
