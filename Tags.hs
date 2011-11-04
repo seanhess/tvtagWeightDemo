@@ -16,7 +16,7 @@ import Data.List (elemIndex, sortBy, init)
 import qualified Data.List as List
 
 import Data.Char (toLower)
-import Data.Ratio ((%))
+import Data.Ratio 
 
 -- Tag --
 data Tag = Tag {
@@ -95,13 +95,20 @@ findManual term = do
 
 
 -- Source Weighted Terms --
+
+multRatios :: (Num a, Integral a) => Ratio a -> Ratio a -> Ratio a
+multRatios a b = (numerator a * numerator b) % (denominator a * denominator b)
+
+-- changed to multiplication -- ratio weighting
+-- whatever :) addition probably works just as well ;)
 sourceScoreTag :: Tag -> Tag
-sourceScoreTag tag = setTagScore ((score tag) + sourceScore (source tag)) tag
-    where sourceScore "wikipedia" = 100
-          sourceScore "theinsider" = 250
-          sourceScore "aol" = 50
-          sourceScore "brief" = 300
-          sourceScore _ = 0
+sourceScoreTag tag = setTagScore (round (tagScore `multRatios` (sourceScore tagSource))) tag
+    where sourceScore "theinsider" = 160 % 100
+          sourceScore "brief" = 180 % 100
+          sourceScore _ = 100 % 100 
+          tagSource = source tag
+          tagScore = score tag % 1
+        
 
 findSourceWeighted :: UString -> Action IO [Tag]
 findSourceWeighted term = do
@@ -149,6 +156,13 @@ lazyFindTermScored term = do
     return tags
     
 
+findFullyScored :: String -> Action IO [Tag]
+findFullyScored term = do
+    tags <- generateScoresForTerm term
+    return $ reverse $ List.sort $ map sourceScoreTag tags
+
+
+
 
 
 
@@ -189,11 +203,11 @@ populateMockData = do
     insertMany_ "termScored" $ map tagToDocument lgtags
     insertMany_ "termScored" $ map tagToDocument ltags
     
-    results <- findTermScored "Lady Gaga"
-    liftIO $ print results
-
-    results <- findTermScored "Lady"
-    liftIO $ print results
+    -- results <- findTermScored "Lady Gaga"
+    -- liftIO $ print results
+    -- 
+    -- results <- findTermScored "Lady"
+    -- liftIO $ print results
 
     return ()
 
