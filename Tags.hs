@@ -10,7 +10,7 @@ import Control.Monad.IO.Class
 import Data.Aeson (ToJSON(..), encode, (.=), object)
 import qualified Data.Aeson
 
--- My Data Type
+-- Tag --
 data Tag = Tag {
     source :: String,
     title :: String,
@@ -20,15 +20,34 @@ data Tag = Tag {
 instance ToJSON Tag where
     toJSON (Tag source title url) = object ["source" .= source, "title" .= title, "url" .= url]
 
-toDocument :: Tag -> Document
-toDocument (Tag source title url) = ["_id" =: url, "source" =: source, "title" =: title, "url" =: url]
+tagToDocument :: Tag -> Document
+tagToDocument (Tag source title url) = ["_id" =: url, "source" =: source, "title" =: title, "url" =: url]
 
--- Convert a tag document to a tag
-fromDocument :: Document -> Tag
-fromDocument fs = Tag source title url
+tagFromDocument :: Document -> Tag
+tagFromDocument fs = Tag source title url
     where source = stringValue $ valueAt "source" fs
           title = stringValue $ valueAt "title" fs
           url = stringValue $ valueAt "url" fs
+
+
+
+-- SearchTerm --
+data SearchTerm = SearchTerm {
+    searchTerm :: String,
+    searchScore :: Int, 
+    searchUrl :: String
+} deriving (Eq, Show, Read)
+
+termToDocument :: SearchTerm -> Document
+termToDocument (SearchTerm term score url) = ["term" =: term, "score" =: score, "url" =: url]
+
+instance ToJSON SearchTerm where
+    toJSON (SearchTerm term score url) = object ["term" .= term, "score" .= score, "url" .= url]
+
+
+
+
+
 
 stringValue :: Value -> String
 stringValue (Data.Bson.String s) = Data.Bson.unpack s
@@ -43,13 +62,22 @@ rawInsert tags = do
     delete $ select [] "raw"
     insertMany "raw" tags
 
--- Manual Scoring --
-manualScoreFind term = find (select ["title" =: Regex term "i"] "manual") >>= rest 
-manualScoreInsert tags = do
-    delete $ select [] "manual"
-    insertMany_ "manual" tags
 
--- Runs our actions on a given pipe / db
+-- Manual Search Terms --
+-- [ ] Add sort
+findManual :: UString -> Action IO [Document]
+findManual term = do
+    docs <- find (select ["term" =: term] "manualTerms") >>= rest
+    find (select ["url" =: "http://en.wikipedia.org/wiki/Lady_gaga"] "manualTerms") >>= rest
+    
+
+
+
+
+
+
+
+-- Helpers --
 
 runTagsInner :: (MonadIO m) => Pipe -> Action m a -> m (Either Failure a)
 runTagsInner pipe actions = do
@@ -59,14 +87,17 @@ runTagsInner pipe actions = do
 runTags :: MonadIO m => Pipe -> Action IO a -> m (Either Failure a)
 runTags pipe actions = liftIO $ runTags pipe actions
 
+connectTagsDb = runIOE $ connect (host "127.0.0.1")
+
 populateMockData :: Action IO ()
 populateMockData = do
-    let gagaDocs = map toDocument mockGaga
+    let gagaDocs = map tagToDocument mockGaga
     rawInsert gagaDocs
-    manualScoreInsert gagaDocs
+    
+    delete $ select [] "manualTerms"
+    insertMany_ "manualTerms" $ map termToDocument mockSearchTerms
     return ()
 
-connectTagsDb = runIOE $ connect (host "127.0.0.1")
     
 -- main :: IO ()
 -- main = do
@@ -76,6 +107,12 @@ connectTagsDb = runIOE $ connect (host "127.0.0.1")
 --     print tags
 --     return ()
 
+
+mockSearchTerms = [ SearchTerm "lady gaga" 100 "http://en.wikipedia.org/wiki/Lady_gaga"
+                  , SearchTerm "lady gaga" 80 "http://www.theinsider.com/music/45833_Bad_Romance_Named_All_Time_100_Songs/index.html"
+                  , SearchTerm "lady gaga" 60 "http://en.wikipedia.org/wiki/Lady_Gaga_discography"
+                  , SearchTerm "lady gaga" 40 "http://www.aoltv.com/2011/09/13/lady-gaga-madonna-inspiration-gaga-by-gaultier-video/"
+                  ]
 
 
 -- MOCK LADY GAGA DATA --

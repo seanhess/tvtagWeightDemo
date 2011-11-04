@@ -80,6 +80,12 @@ docContext :: (Monad m) => Document -> MuContext m
 docContext source = mkStrContext ctx
     where ctx name = valueToMu (Data.Bson.valueAt (CS.pack name) source) 
 
+
+renderTagsJson result = do
+    let Right tags = result
+    json tags
+
+
 main :: IO ()
 main = do
     putStrLn "server started on port 3000..."
@@ -99,13 +105,10 @@ main = do
         middleware - simple_access_logger Nothing
 
         get "/tags.json" - do
-            -- tags <- liftIO $ readFile "views/tags.mustache"
             result <- runTags pipe $ rawFind "Lady Gaga"  -- without liftIO, I die
-            let Right tags = result
-            json tags
+            renderTagsJson result
 
         get "/tags.html" - do
-            -- tags <- liftIO $ readFile "views/tags.mustache"
             result <- runTags pipe $ rawFind "Lady Gaga"
             let Right tags = result
     
