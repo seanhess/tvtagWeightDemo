@@ -70,7 +70,7 @@ RESEARCH
     [√] Manually term score on input
     [√] Term Score them client-side, after getting a match at all
     [√] Lazily extract them from docs that match at all. Term Query -> Get Docs -> Score Docs -> Re-run query
-    [ ] Add source weighting as well
+    [√] Add source weighting as well
     [ ] Try assigning a score to each word individually, and combine them somehow
 
 [ ] API 6: Consider all search terms to be a single document. Just return the document of results. 

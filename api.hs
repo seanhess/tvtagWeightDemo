@@ -37,6 +37,7 @@ import Text.Hastache
 import Text.Hastache.Context
 
 import Control.Monad.IO.Class
+import Control.Monad.Trans.State.Lazy (StateT)
 
 -- some helper methods for json
 sendJson :: B.ByteString -> AppMonad
@@ -96,6 +97,11 @@ tagsContext tags = MuList $ map tagContext tags
 --     let Right tags = result
 --     json tags
 
+renderTags :: String -> [Tag] -> ReaderT AppReader (StateT AppState IO) B.ByteString
+renderTags tagsView tags = do
+    let context "tags" = tagsContext tags
+    res <- hastacheStr defaultConfig (encodeStr tagsView) (mkStrContext context) 
+    return $ l2b res
 
 main :: IO ()
 main = do
@@ -106,6 +112,7 @@ main = do
 
     -- views --
     tagsView <- readFile "views/tags.mustache"
+    let renderTagsView = renderTags tagsView
   
     -- run the server --
     run . miku - do
@@ -133,20 +140,16 @@ main = do
             let term = (lookup "term" ^ fromMaybe "") caps
             let cleanTerm = B.map plusToSpace term
             Right tags <- liftIO $ runTags pipe $ findManual $ bsToCs cleanTerm
-            
-            let context "tags" = tagsContext tags
-        
-            res <- hastacheStr defaultConfig (encodeStr tagsView) (mkStrContext context) 
-            sendHtml $ l2b res
+            res <- renderTagsView tags
+            sendHtml $ res
 
         get "/sourceWeighted/:term" - do
             caps <- captures
             let term = (lookup "term" ^ fromMaybe "") caps
             let cleanTerm = B.map plusToSpace term
             Right tags <- liftIO $ runTags pipe $ findSourceWeighted $ bsToCs cleanTerm
-            let context "tags" = tagsContext tags
-            res <- hastacheStr defaultConfig (encodeStr tagsView) (mkStrContext context) 
-            sendHtml $ l2b res
+            res <- renderTagsView tags
+            sendHtml $ res
             
 
         get "/termScored/:term" - do
@@ -154,9 +157,8 @@ main = do
             let term = (lookup "term" ^ fromMaybe "") caps
             let cleanTerm = B.map plusToSpace term
             Right tags <- liftIO $ runTags pipe $ lazyFindTermScored $ B.unpack cleanTerm
-            let context "tags" = tagsContext tags
-            res <- hastacheStr defaultConfig (encodeStr tagsView) (mkStrContext context) 
-            sendHtml $ l2b res        
+            res <- renderTagsView tags
+            sendHtml $ res
             
 
         get "/fullyScored/:term" - do
@@ -164,9 +166,8 @@ main = do
             let term = (lookup "term" ^ fromMaybe "") caps
             let cleanTerm = B.map plusToSpace term
             Right tags <- liftIO $ runTags pipe $ findFullyScored $ B.unpack cleanTerm
-            let context "tags" = tagsContext tags
-            res <- hastacheStr defaultConfig (encodeStr tagsView) (mkStrContext context) 
-            sendHtml $ l2b res            
+            res <- renderTagsView tags
+            sendHtml $ res
 
 
         -- params are ? params
