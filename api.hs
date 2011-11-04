@@ -103,6 +103,9 @@ renderTags tagsView tags = do
     res <- hastacheStr defaultConfig (encodeStr tagsView) (mkStrContext context) 
     return $ l2b res
 
+param :: String -> [(B.ByteString, B.ByteString)] -> B.ByteString
+param p caps = B.map plusToSpace $ (lookup "term" ^ fromMaybe "") caps 
+
 main :: IO ()
 main = do
     putStrLn "server started on port 3000..."
@@ -137,35 +140,27 @@ main = do
 
         get "/manual/:term" - do
             caps <- captures
-            let term = (lookup "term" ^ fromMaybe "") caps
-            let cleanTerm = B.map plusToSpace term
-            Right tags <- liftIO $ runTags pipe $ findManual $ bsToCs cleanTerm
+            Right tags <- liftIO $ runTags pipe $ findManual $ bsToCs (param "term" caps)
             res <- renderTagsView tags
             sendHtml $ res
 
         get "/sourceWeighted/:term" - do
             caps <- captures
-            let term = (lookup "term" ^ fromMaybe "") caps
-            let cleanTerm = B.map plusToSpace term
-            Right tags <- liftIO $ runTags pipe $ findSourceWeighted $ bsToCs cleanTerm
+            Right tags <- liftIO $ runTags pipe $ findSourceWeighted $ bsToCs (param "term" caps)
             res <- renderTagsView tags
             sendHtml $ res
             
 
         get "/termScored/:term" - do
             caps <- captures
-            let term = (lookup "term" ^ fromMaybe "") caps
-            let cleanTerm = B.map plusToSpace term
-            Right tags <- liftIO $ runTags pipe $ lazyFindTermScored $ B.unpack cleanTerm
+            Right tags <- liftIO $ runTags pipe $ lazyFindTermScored $ B.unpack (param "term" caps)
             res <- renderTagsView tags
             sendHtml $ res
             
 
         get "/fullyScored/:term" - do
             caps <- captures
-            let term = (lookup "term" ^ fromMaybe "") caps
-            let cleanTerm = B.map plusToSpace term
-            Right tags <- liftIO $ runTags pipe $ findFullyScored $ B.unpack cleanTerm
+            Right tags <- liftIO $ runTags pipe $ findFullyScored $ B.unpack (param "term" caps)
             res <- renderTagsView tags
             sendHtml $ res
 
