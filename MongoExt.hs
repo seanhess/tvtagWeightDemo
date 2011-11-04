@@ -1,10 +1,15 @@
 {-# LANGUAGE OverloadedStrings, ExtendedDefaultRules, TypeSynonymInstances, IncoherentInstances #-}
 
--- https://github.com/mailrank/aeson/blob/master/examples/Demo.hs
--- cabal install aeson
--- cabal install mongoDb
+{-
 
-module BsonJson where
+MDB is a function to pass around
+
+    db <- mdb 
+    db $ delete $ select [] "tags"
+
+-}
+
+module MongoExt (mdb) where
 
 import Data.Aeson
 import qualified Data.Aeson.Types as T
@@ -26,9 +31,25 @@ import Data.Bson
 import qualified Data.Bson as Bson
 import qualified Data.Vector
 
+import qualified Data.CompactString as CS
+import Control.Monad.IO.Class
+
 import GHC.Int
 
--- Is there a better way to convert between string representations?
+
+-- CONNECTION METHODS --
+mdb :: String -> String -> IO (Action IO a -> IO (Either Failure a))
+mdb hostname dbname = do
+    pipe <- runIOE $ connect $ host hostname
+    return (access pipe master (CS.pack dbname))
+
+
+
+
+
+
+-- MONGDB JSON SERIALIZATION --
+
 csToTxt :: UString -> Text.Text
 csToTxt cs = Text.pack $ CS.unpack cs
 
@@ -43,10 +64,6 @@ fieldToPair f = key .= val
 instance ToJSON Document where
     toJSON fs = object $ map fieldToPair fs
           
--- instance ToJSON Field where
---     toJSON f = object [fieldToPair f]
-
--- Is this what I'm supposed to do? Just go through and map everything?
 instance ToJSON Data.Bson.Value where
     toJSON (Float f) = T.Number $ D f
     toJSON (Bson.String s) = T.String $ csToTxt s
@@ -71,48 +88,38 @@ instance ToJSON Data.Bson.Value where
     toJSON (Stamp s) = T.Null
     toJSON (MinMax mm) = T.Null
 
--- Data.Bson.Value and T.Value for reference
--- data Data.Bson.Value
---   = Float Double
---   | Data.Bson.String UString
---   | Doc Document
---   | Data.Bson.Array [Data.Bson.Value]
---   | Bin Binary
---   | Fun Function
---   | Uuid UUID
---   | Md5 MD5
---   | UserDef UserDefined
---   | ObjId ObjectId
---   | Data.Bson.Bool Bool
---   | UTC time-1.2.0.3:Data.Time.Clock.UTC.UTCTime
---   | Data.Bson.Null
---   | RegEx Regex
---   | JavaScr Javascript
---   | Sym Symbol
---   | Int32 GHC.Int.Int32
---   | Int64 GHC.Int.Int64
---   | Stamp MongoStamp
---   | MinMax MinMaxKey
 
--- data T.Value
---   = Object Object
---   | T.Array Array
---   | T.String Text.Text
---   | Number Data.Attoparsec.Number.Number
---   | T.Bool !Bool
---   | T.Null
 
--- main ::IO ()
--- main = do
---     putStrLn $ "testing again: " ++ BSL.unpack (encode ["Hello", "I", "am", "angry"])
---     
---     let field = "key" =: "value"
---     print field
---     print $ label field
---     putStrLn $ CS.unpack $ label field
--- 
---     putStrLn $ show "asdf"
--- 
---     -- Getting close
---     putStrLn $ "testing again: " ++ BSL.unpack (encode ["hello" =: "world", "num" =: 10.05, "num2" =: 5, "sub" =: ["doc","charlie"], "bool" =: False])
---     putStrLn $ "testing again: " ++ BSL.unpack (encode ["hello" =: "world", "sub" =: ["one" =: 1, "two" =: 2]])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- TESTS -- 
+
+mdbExample :: IO ()
+mdbExample = do
+    -- Here's the normal way you access mongo stuff
+    -- I want to put it all in one function, and return a function called "db"
+    -- so I can think of it more like normal mongo: db.mycollection.remove({})
+    pipe <- runIOE $ connect $ host "127.0.0.1"
+    let run action = access pipe master "testdb" action
+    run $ delete $ select [] "mycollection"
+        
+    -- here's what the shortcut looks like
+    db <- mdb "127.0.0.1" "testdb" 
+    -- db $ delete $ select [] "mycollection"
+    -- but without the above line, I get the error pasted at the bottom. Why?
+
+    return () 

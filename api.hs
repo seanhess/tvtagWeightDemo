@@ -28,10 +28,9 @@ import Database.MongoDB (Failure, Value(..), Document, runIOE, access, master, c
 import Data.Bson ((=:), valueAt)
 import qualified Data.CompactString as CS
 import qualified Data.Bson
-import qualified BsonJson
 
 import Tags
-import Mongo
+import MongoExt
 
 import Text.Hastache
 import Text.Hastache.Context
