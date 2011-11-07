@@ -41,7 +41,7 @@ LEFTOVERS
 
 RESEARCH
 [√] Easy to do a two-step query, if we need to
-[ ] Can we have terms: ["a","b","c"] and find all docs that have both a AND c?
+[ ] Can we have terms: ["a","b","c"] and find all docs that have both a AND c? (Yes $and)
 
 
 
@@ -72,15 +72,22 @@ RESEARCH
     [√] Add source weighting as well
     [x] Client-side won't hit the index with that regex
 
-[ ] API: Multiple Terms
-    [ ] Multiple entries, with single-word terms
-    [ ] Multiple keywords in an array -- score them afterwards. Can you match both?
+[√] API: Multiple Terms
+    [√] Multiple entries, with single-word terms
+    [√] Multiple keywords in an array -- score them afterwards. Can you match both?
 
-[ ] API 7: Create full text search by:
-    [ ] Stemming the tags, recording all keywords
-    [ ] Stemming the queries, and making sure the doc has all the stems
+[√] API 7: Create full text search by:
+    [√] Stemming the tags, recording all keywords
+    [√] Stemming the queries, and making sure the doc has all the stems
 
 [ ] Real Data Sources - try parsing Aol / CBS. Can it be done quickly, perhaps?
+
+[ ] Way to sort on server with $and query  -- not really
+
+RECOMMENDATION
+[ ] Need to test with real sources
+[ ] We need sort to happen on the server
+[ ] Use Lazy Term Hits, or Map Reduce to get term -> doc
 
 OTHER IDEAS
 [ ] Feedback loop - allow API calls (liked this) to increase the score of the different sources? 

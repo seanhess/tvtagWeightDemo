@@ -64,11 +64,6 @@ sendHtml = Network.Miku.html
 instance ToJSON Failure where
     toJSON f = Data.Aeson.Null
 
--- Sample Data Object for JSON --
-data Thang = Thang { ttt :: String } deriving (Eq, Show)
-instance ToJSON Thang where
-    toJSON (Thang ttt) = object ["ttt" .= ttt]
-
 
 
 
@@ -170,54 +165,6 @@ main = do
             res <- renderTagsView tags
             sendHtml $ res
 
-        -- params are ? params
-        get "/bench" - do
-          name <- ask ^ params ^ lookup "name" ^ fromMaybe "nobody"
-          sendHtml ("<h1>" + name + "</h1>")
-
-        -- simple
-        get "/hello"    (text "hello world")
-
-        get "/json" - do
-            json (Thang "wooot")
-
         get "/bson" - do
             json ["key" =: "value", "woot" =: "henry", "sub" =: ["one" =: 1], "arr" =: [1,2,3,4]]
 
-        get "/hello/:name" - do
-            caps <- captures
-            text ("HI " + (lookup "name" ^ fromMaybe "nobody") caps)
-            -- text . show_bytestring =<< captures
-  
-        get "/debug"                  (text . show_bytestring =<< ask)
-        get "/debug/:param/:again" - do
-            env <- ask 
-            (text . show_bytestring) env
-          
-        -- io
-        get "/source"    - text =<< io (B.readFile "api.hs")
-        
-        -- html output
-        get "/html"     (sendHtml "<html><body><p>miku power!</p></body></html>")
-
-        get "/slow" - do
-            liftIO $ sleep 5
-            text "Done"
-        
-        get "/" - do
-          update - set_status 203
-          text "match /"
-        
-        get "/test-star/*/hi" - do
-          text "test-star/*/hi"
-        
-        -- public serve, only allows /src
-        public (Just "./") ["/public"]
-
-        -- default
-        get "*" - do
-          text "match everything"
-        
-          
-        -- -- treat .hs extension as text/plain
-        -- mime "hs" "text/plain"
