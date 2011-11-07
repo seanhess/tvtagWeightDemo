@@ -7,6 +7,12 @@ MDB is a function to pass around
     db <- mdb 
     db $ delete $ select [] "tags"
 
+
+    Note that I didn't end up using this, I used the Action monad, which lets you 
+    pass around the state magically. See Tags.hs, and api.hs for use
+
+Also makes Document an instance of JSON so it can be serialized
+
 -}
 
 module MongoExt (mdb, csToTxt, bsToTxt, bsToCs) where

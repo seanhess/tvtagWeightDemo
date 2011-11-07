@@ -1,5 +1,13 @@
 {-# LANGUAGE OverloadedStrings, ExtendedDefaultRules #-}
 
+{-
+    This is the file where all the magic happens. 
+        Has Tag, which I define some converters for
+
+        Also has several different ways to store and access tags. 
+
+-}
+
 module Tags where
 
 import Prelude hiding (lookup)
@@ -20,7 +28,7 @@ import Data.Ratio
 
 import NLP.Stemmer 
 
--- Tag --
+-- Tag: for simplicity, I didn't make different data types for the different experiments, so this type is a little bloated --
 data Tag = Tag {
     source :: String,
     title :: String,
@@ -30,15 +38,19 @@ data Tag = Tag {
     terms :: [String]
 } deriving (Eq, Show, Read)
 
+-- This allows us to call toJSON on a Tag --
 instance ToJSON Tag where
     toJSON (Tag source title url term score terms) = object ["source" .= source, "title" .= title, "url" .= url, "score" .= score, "term" .= term, "terms" .= terms]
 
+-- This allows us to call sort on [Tag]
 instance Ord Tag where
     compare x y = compare (score x) (score y)
 
+-- convert to mongo Document
 tagToDocument :: Tag -> Document
 tagToDocument (Tag source title url term score terms) = ["_id" =: (term ++ "-" ++ url), "source" =: source, "title" =: title, "url" =: url, "score" =: score, "term" =: term, "terms" =: terms]
 
+-- convert from mongo Document
 tagFromDocument :: Document -> Tag
 tagFromDocument fs = Tag source title url term score terms
     where source = sval "source" fs
@@ -53,10 +65,16 @@ tagFromDocument fs = Tag source title url term score terms
           ival (Int32 i) = fromIntegral i
           ival _ = 0
 
+          stringValue :: Value -> String
+          stringValue (Data.Bson.String s) = Data.Bson.unpack s
+          stringValue _ = ""
 
+
+-- sets the term and the score for that term
 setTagTermScore :: String -> Int -> Tag -> Tag
 setTagTermScore term score tag = Tag (source tag) (title tag) (url tag) (normalizeTerm term) score (terms tag)
 
+-- sets just the score
 setTagScore :: Int -> Tag -> Tag
 setTagScore score tag = Tag (source tag) (title tag) (url tag) (term tag) score (terms tag)
 
@@ -68,13 +86,10 @@ simpleTag source title url = Tag source title url "" 0 []
 
 
 
-stringValue :: Value -> String
-stringValue (Data.Bson.String s) = Data.Bson.unpack s
-stringValue _ = ""
 
--- Raw Tags --
+-- Raw Tags :: I'm just matching against the title here --
 rawFind :: UString -> Action IO [Document]
-rawFind term = find (select ["title" =: Regex term "i"] "raw") >>= rest 
+rawFind term = find (select ["title" =: Regex term "i"] "raw") >>= rest  -- this is equivalent to cursor <- FIRST; result <- rest cursor
 
 rawInsert :: [Document] -> Action IO [Value]
 rawInsert tags = do
@@ -101,11 +116,7 @@ findManual term = do
 
 
 -- Source Weighted Terms --
-
-multRatios :: (Num a, Integral a) => Ratio a -> Ratio a -> Ratio a
-multRatios a b = (numerator a * numerator b) % (denominator a * denominator b)
-
--- changed to multiplication -- ratio weighting
+-- changed to multiplication -- ratio weighting -- ratios are like fractions. Uses the % operator
 -- whatever :) addition probably works just as well ;)
 sourceScoreTag :: Tag -> Tag
 sourceScoreTag tag = setTagScore (round (tagScore `multRatios` (sourceScore tagSource))) tag
@@ -114,8 +125,12 @@ sourceScoreTag tag = setTagScore (round (tagScore `multRatios` (sourceScore tagS
           sourceScore _ = 100 % 100 
           tagSource = source tag
           tagScore = score tag % 1
-        
 
+-- multiplies two ratios. I didn't find this after a quick search, so I just wrote it
+multRatios :: (Num a, Integral a) => Ratio a -> Ratio a -> Ratio a
+multRatios a b = (numerator a * numerator b) % (denominator a * denominator b)
+        
+-- uses the same term score cursor 
 findSourceWeighted :: UString -> Action IO [Tag]
 findSourceWeighted term = do
     tagDocs <- termScoreCursor term "sourceWeighted" >>= rest
@@ -128,10 +143,12 @@ findSourceWeighted term = do
 
 
 -- Score Lazily --
+-- In this section, I didn't save the lazily generated scores back to the database, but I could have
 
 normalizeTerm :: String -> String
 normalizeTerm term = map toLower term
 
+-- I'm sure some of these functions could be more elegant, but at least they're pretty clear. 
 termScoreTag :: String -> Tag -> Tag
 termScoreTag term tag = setTagTermScore term termScore tag
     where termScore = round $ maxScore / distanceToTerm
@@ -265,6 +282,7 @@ scoreTagByTerms term tag = setTagTermScore term termScore tag
 
 -- Helpers --
 
+-- Just runs an Action function against our database (so it can magically be passed the db connection)
 runTags :: (MonadIO m) => Pipe -> Action m a -> m (Either Failure a)
 runTags pipe actions = do
     e <- access pipe master "testtags" actions
@@ -274,8 +292,11 @@ runTags pipe actions = do
 -- runTags :: MonadIO m => Pipe -> Action IO a -> m (Either Failure a)
 -- runTags pipe actions = liftIO $ runTags pipe actions
 
+-- returns the Pipe for the db
 connectTagsDb = runIOE $ connect (host "127.0.0.1")
 
+
+-- Populates the databases for the different experiments
 populateMockData :: Action IO ()
 populateMockData = do
 
@@ -306,6 +327,7 @@ populateMockData = do
 
     return ()
 
+-- I just put an "a" in front of main to disable it
 amain = do
     
     pipe <- connectTagsDb
